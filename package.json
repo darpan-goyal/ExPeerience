@@ -10,6 +10,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^4.0.1"
-  }
+    "concurrently": "^4.1.2"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darpan-goyal/ExPeerience.git"
+  },
+  "bugs": {
+    "url": "https://github.com/darpan-goyal/ExPeerience/issues"
+  },
+  "homepage": "https://github.com/darpan-goyal/ExPeerience#readme"
 }

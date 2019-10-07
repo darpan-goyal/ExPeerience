@@ -12,6 +12,6 @@ const userSchema = new Schema({
 	resume: { type: String },
 });
 
-const User = mongoose.model('College', userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;

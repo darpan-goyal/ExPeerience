@@ -1,21 +1,21 @@
 const router = require('express').Router();
-let College = require('../models/college.model');
+let Skill = require('../models/skill.model');
 
 router.route('/').get((req, res) => {
-  College.find()
-    .then(college => res.json(college))
+  Skill.find()
+    .then(skill => res.json(skill))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/add').post((req, res) => {
   const name = req.body.name;
 
-  const newCollege = new College({
+  const newSkill = new Skill({
   	name
   });
 
-  newCollege.save()
-    .then(() => res.json('College added!'))
+  newSkill.save()
+    .then(() => res.json('Skill added!'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

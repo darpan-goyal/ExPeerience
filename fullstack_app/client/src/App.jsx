@@ -1,9 +1,11 @@
 // client/src/App.js
 import React, { Component } from "react";
 
+import LoginPage from "./components/loginpage.component";
+
 class App extends Component {
   render() {
-    return <div>I'M READY TO USE THE BACK END APIS! :-)</div>;
+    return <LoginPage />
   }
 }
 

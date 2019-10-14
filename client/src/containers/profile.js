@@ -10,7 +10,7 @@ export default function Profile(props) {
   const [college, setCollege] = useState("");
   const [major, setMajor] = useState("");
   const [skills, setSkills] = useState([]);
-  const [picture, setPicture] = useState("/profile.png");
+  const [picture, setPicture] = useState("/profile/profile.png");
   const [resume, setResume] = useState("");
 
   useEffect(() => {

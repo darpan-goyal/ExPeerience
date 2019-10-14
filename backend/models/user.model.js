@@ -11,7 +11,7 @@ const userSchema = new Schema({
 	college: { type: String },
 	major: { type: String },
 	skills: { type: [String], default: ["Your skills go here."] },
-	picture: { type: String, default: "/profile.png" },
+	picture: { type: String, default: "/profile/profile.png" },
 	resume: { type: String, default: "Your resume goes here." },
 });
 

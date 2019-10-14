@@ -7,10 +7,10 @@
       margin: 0 auto;
       max-width: 320px;
     }
-  }
   
-  .SignUp form span.help-block {
-    font-size: 14px;
-    padding-bottom: 10px;
-    color: #999;
-  }
+    .SignUp form span.help-block {
+      font-size: 14px;
+      padding-bottom: 10px;
+      color: #999;
+    }
+}

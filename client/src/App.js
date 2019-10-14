@@ -25,34 +25,37 @@ function App(props) {
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
-        {isAuthenticated
-          ? <>
-              <Nav pullLeft>
-                <LinkContainer to="/projects">
-                  <NavItem>Projects</NavItem>
-                </LinkContainer>
-              </Nav>
-              <Nav pullRight>
-                <LinkContainer to="/messages">
-                  <NavItem>Messages</NavItem>
-                </LinkContainer>
-                <LinkContainer to="/profile">
-                  <NavItem>Profile</NavItem>
-                </LinkContainer>
-                <NavItem onClick={handleLogout}>Logout</NavItem>
-              </Nav>
-            </>
-          : <>
-              <Nav pullRight>
-                <LinkContainer to="/signup">
-                  <NavItem>Sign Up</NavItem>
-                </LinkContainer>
-                <LinkContainer to="/login">
-                  <NavItem>Login</NavItem>
-                </LinkContainer>
-              </Nav>
-            </>
-        }
+          <Nav pullLeft>
+            <LinkContainer to="/browse">
+              <NavItem>Browse</NavItem>
+            </LinkContainer>
+          </Nav>
+          {isAuthenticated
+            ? <>
+                <Nav pullRight>
+                  <LinkContainer to="/projects">
+                    <NavItem>Projects</NavItem>
+                  </LinkContainer>
+                  <LinkContainer to="/messages">
+                    <NavItem>Messages</NavItem>
+                  </LinkContainer>
+                  <LinkContainer to="/profile">
+                    <NavItem>Profile</NavItem>
+                  </LinkContainer>
+                  <NavItem onClick={handleLogout}>Logout</NavItem>
+                </Nav>
+              </>
+            : <>
+                <Nav pullRight>
+                  <LinkContainer to="/signup">
+                    <NavItem>Sign Up</NavItem>
+                  </LinkContainer>
+                  <LinkContainer to="/login">
+                    <NavItem>Login</NavItem>
+                  </LinkContainer>
+                </Nav>
+              </>
+          }
         </Navbar.Collapse>
       </Navbar>
       <Routes appProps={{ isAuthenticated, userHasAuthenticated, userID, setUserID }} />

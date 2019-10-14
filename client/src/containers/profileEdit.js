@@ -9,9 +9,9 @@ export default function ProfileEdit(props) {
   const [biography, setBiography] = useState("");
   const [college, setCollege] = useState("");
   const [major, setMajor] = useState("");
-  //const [skills, setSkills] = useState(null);
-  //const [picture, setPicture] = useState(null);
-  //const [resume, setResume] = useState(null);
+  const [skills, setSkills] = useState(null);
+  const [picture, setPicture] = useState(null);
+  const [resume, setResume] = useState(null);
 
   const [collegeList, setCollegeList] = useState([]);
   const [majorList, setMajorList] = useState([]);
@@ -121,6 +121,18 @@ export default function ProfileEdit(props) {
             componentClass="textarea"
             value={biography}
             onChange={e => setBiography(e.target.value)}
+          />
+        </FormGroup>
+        <FormGroup bsSize="large">
+          <ControlLabel>Picture</ControlLabel>
+          <FormControl
+            type="file"
+          />
+        </FormGroup>
+        <FormGroup bsSize="large">
+          <ControlLabel>Resume</ControlLabel>
+          <FormControl
+            type="file"
           />
         </FormGroup>
       </form>

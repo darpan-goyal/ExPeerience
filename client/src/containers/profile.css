@@ -1,0 +1,24 @@
+@media all and (min-width: 480px) {
+  .Profile .media {
+    padding-bottom: 20px;
+  }
+  
+  .Profile .media-heading {
+    font-size: 30px;
+    color: #333;
+    padding-left: 20px;
+  }
+
+  .Profile h4 {
+    font-size: 20px;
+    color: #333;
+    padding-left: 20px;
+  }
+
+  .Profile p {
+    font-size: 14px;
+    color: #333;
+    padding-top: 20px;
+    padding-left: 10px;
+  }
+}

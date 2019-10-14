@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Questrial&display=swap');
+
+.App {
+  margin-top: 15px;
+  font-family: "Questrial", sans-serif;
+}
+
+.App .navbar-brand {
+  font-weight: bold;
+}

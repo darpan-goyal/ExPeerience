@@ -31,7 +31,7 @@ const searchData = [
     {
         id: 5,
         position:  "C++ Programming",
-        projectDescription: "Creating a PortScanner in C++",
+        projectDescription: "Creating a Port Scanner in C++",
         teamName: "De Anza College",
         location: "San Jose, CA"
     },

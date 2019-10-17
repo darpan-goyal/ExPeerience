@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const bcrypt = require('bcryptjs')
 let User = require('../models/user.model');
 
 //gets a user given an id
@@ -18,7 +19,7 @@ router.route('/').get((req, res) => {
 //adds a user
 router.route('/add').post((req, res) => {
   const username = req.body.username;
-  const password = req.body.password;
+  const password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const biography = req.body.biography;
@@ -79,13 +80,11 @@ router.route('/:id').delete((req, res) => {
 router.route('/authenticate').post((req, res) => {
   User.findOne({username: req.body.username})
     .then(user => {
-      if (user.password === req.body.password) {
-        res.json(user);
-      } else {
-        res.status(400).json('Invalid password.');
-      }
+      bcrypt.compare(req.body.password, user.password, (err, resp) => {
+        resp ? res.json(user) : res.status(400).json('Invalid credentials.');
+      });
     })
-    .catch(err => res.status(400).json('Invalid username.'));
+    .catch(err => res.status(400).json('Invalid credentials.'));
 });
 
 module.exports = router;

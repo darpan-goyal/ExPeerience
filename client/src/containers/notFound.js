@@ -4,7 +4,7 @@ import "./notFound.css";
 export default function NotFound() {
   return (
     <div className="NotFound">
-      <h3>Sorry, page not found!</h3>
+      <h3>Sorry, page under construction.</h3>
     </div>
   );
 }

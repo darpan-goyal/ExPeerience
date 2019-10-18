@@ -4,8 +4,8 @@ import { Button, ControlLabel, FormGroup, FormControl } from "react-bootstrap";
 import "./login.css";
 
 export default function Login(props) {
-  const [username, setUsername] = useState("KevinKim");
-  const [password, setPassword] = useState("password");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   function validateForm() {
     return (

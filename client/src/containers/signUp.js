@@ -4,11 +4,11 @@ import { Button, ControlLabel, FormGroup, FormControl } from "react-bootstrap";
 import "./signUp.css";
 
 export default function SignUp(props) {
-  const [username, setUsername] = useState("KevinKim");
-  const [password, setPassword] = useState("password");
-  const [firstName, setFirstName] = useState("Kevin");
-  const [lastName, setLastName] = useState("Kim");
-  const [confirmPassword, setConfirmPassword] = useState("password");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   function validateForm() {
     return (

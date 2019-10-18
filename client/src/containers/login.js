@@ -10,7 +10,9 @@ export default function Login(props) {
   function validateForm() {
     return (
       username.length > 0 && 
-      password.length > 0
+      password.length > 0 &&
+      username.length < 13 &&
+      password.length < 13
     );
   }
 

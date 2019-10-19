@@ -16,6 +16,10 @@ export default function SignUp(props) {
       lastName.length > 0 &&
       username.length > 0 &&
       password.length > 0 &&
+      firstName.length < 33 &&
+      lastName.length < 33 &&
+      username.length < 13 &&
+      password.length < 13 &&
       password === confirmPassword
     );
   }

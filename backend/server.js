@@ -20,11 +20,13 @@ const collegeRouter = require('./routes/college.route');
 const majorRouter = require('./routes/major.route');
 const skillRouter = require('./routes/skill.route');
 const userRouter = require('./routes/user.route');
+const projectRouter = require('./routes/project.route');
 
 app.use('/college', collegeRouter);
 app.use('/major', majorRouter);
 app.use('/skill', skillRouter);
 app.use('/user', userRouter);
+app.use('/project', projectRouter);
 
 app.listen(port, () => {
     console.log('Server is running on port: ${port}');

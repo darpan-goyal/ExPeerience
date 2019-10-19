@@ -17,6 +17,16 @@ export default function ProfileEdit(props) {
   const [majorList, setMajorList] = useState([]);
 
   const [isLoading, hasLoaded] = useState(true);
+  
+  function validateForm() {
+    return (
+      firstName.length > 0 &&
+      lastName.length > 0 &&
+      firstName.length < 33 &&
+      lastName.length < 33 &&
+      biography.length < 1025
+    );
+  }
 
   useEffect(() => {
     if (isLoading) {
@@ -67,7 +77,7 @@ export default function ProfileEdit(props) {
       <form onSubmit={handleSubmit}>
         <PageHeader>
           Edit Profile
-          <Button className="pull-right" bsSize="medium" type="submit">
+          <Button className="pull-right" bsSize="medium" disabled={!validateForm()} type="submit">
             Save
           </Button>
         </PageHeader>

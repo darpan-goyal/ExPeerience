@@ -1,3 +1,20 @@
+
+/* need to...
+
+change the color of the background
+change the font for all pages
+design the tags 
+add tags to edit profile page
+make it so you can view the tags on the main page
+implement the file previewier 
+
+
+backend router connects to the database
+frontend router connects the pages to each other
+
+*/
+
+
 @media all and (min-width: 480px) {
   .Profile .media {
     padding-bottom: 20px;
@@ -22,4 +39,30 @@
     padding-left: 10px;
     white-space: pre-line;
   }
+
+  /* adapted from: https://codepen.io/wbeeftink/pen/dIaDH */
+.tags {
+  list-style: none;
+  margin: 0;
+  overflow: hidden; 
+  padding: 0;
+  padding-left: 38%;
+}
+
+.tags li {
+    float: left;
+}
+
+.tag {
+  background: #F76C6C;
+  border-radius: 3px;
+  color: white;
+  display: inline-block;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 20px 0 23px;
+  position: relative;
+  margin: 0 10px 10px 0;
+  text-decoration: none;
+}
 }

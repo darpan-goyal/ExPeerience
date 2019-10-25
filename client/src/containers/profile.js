@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Button, Media, PageHeader, Tab, Tabs } from "react-bootstrap";
 import "./profile.css";
 
+
+
 export default function Profile(props) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -11,7 +13,8 @@ export default function Profile(props) {
   const [major, setMajor] = useState("");
   const [skills, setSkills] = useState([]);
   const [picture, setPicture] = useState("/profile/profile.png");
-  const [resume, setResume] = useState("");
+  const [resume, setResume] = useState("public/FergusonResume102019.pdf");
+
 
   useEffect(() => {
     axios.get('http://localhost:3000/user/' + props.userID)
@@ -55,10 +58,18 @@ export default function Profile(props) {
           <p>{biography}</p>
         </Tab>
         <Tab eventKey={2} title="Skills">
-          <p>{skills}</p>
+          <br></br>
+          <li><a class="tag">Java</a></li>
+          <li><a class="tag">Python</a></li>
+          <li><a class="tag">JavaScript</a></li>
+            
         </Tab>
         <Tab eventKey={3} title="Resume">
-          <p>{resume}</p>
+          <Media>
+          <Media.Left>
+          <img width={150} height={150} src={resume} alt="res"/>
+        </Media.Left>
+          </Media>
         </Tab>
       </Tabs>
     </div>

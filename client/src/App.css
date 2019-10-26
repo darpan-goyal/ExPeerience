@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Questrial&display=swap');
 
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Questrial", sans-serif;
+  font-size: 16px;
+  /*color: #333;*/
+  color: #24305E;
+  background: #F8E9A1;
+  overflow-y: scroll;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
 .App {
   margin-top: 15px;
   font-family: "Questrial", sans-serif;
@@ -7,4 +21,9 @@
 
 .App .navbar-brand {
   font-weight: bold;
+}
+
+.App .navbar {
+  background-color: #24305E;
+  color: white;
 }

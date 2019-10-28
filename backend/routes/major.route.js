@@ -30,14 +30,8 @@ router.route('/add').post((req, res) => {
 
 //updates a major given an id
 router.route('/update/:id').post((req, res) => {
-  Major.findById(req.params.id)
-    .then(major => {
-      major.name = req.body.name;
-
-      major.save()
-        .then(() => res.json('Major updated.'))
-        .catch(err => res.status(400).json('Error: ' + err));
-    })
+  Major.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => res.json('Major updated.'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

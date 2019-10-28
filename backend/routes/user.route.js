@@ -49,23 +49,8 @@ router.route('/add').post((req, res) => {
 
 //updates a user given an id
 router.route('/update/:id').post((req, res) => {
-  User.findById(req.params.id)
-    .then(user => {
-      user.username = user.username;
-      user.password = user.password;
-      user.firstName = req.body.firstName;
-      user.lastName = req.body.lastName;
-      user.biography = req.body.biography;
-      user.college = req.body.college;
-      user.major = req.body.major;
-      user.skills = req.body.skills;
-      user.picture = req.body.picture;
-      user.resume = req.body.resume;
-
-      user.save()
-        .then(() => res.json('User updated.'))
-        .catch(err => res.status(400).json('Error: ' + err));
-    })
+  User.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => res.json('User updated.'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

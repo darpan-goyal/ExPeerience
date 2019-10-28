@@ -30,14 +30,8 @@ router.route('/add').post((req, res) => {
 
 //updates a skill given an id
 router.route('/update/:id').post((req, res) => {
-  Skill.findById(req.params.id)
-    .then(skill => {
-      skill.name = req.body.name;
-
-      skill.save()
-        .then(() => res.json('Skill updated.'))
-        .catch(err => res.status(400).json('Error: ' + err));
-    })
+  Skill.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => res.json('Skill updated.'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

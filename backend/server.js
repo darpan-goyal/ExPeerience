@@ -10,6 +10,7 @@ app.use(express.json());
 
 const uri = "mongodb+srv://Team:Teamwork@expeerience-8vflz.mongodb.net/expeerience?retryWrites=true&w=majority";
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true });
+mongoose.connect(uri, { useFindAndModify: false });
 
 const connection = mongoose.connection;
 connection.once('open', () => {

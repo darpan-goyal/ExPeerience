@@ -34,16 +34,8 @@ router.route('/add').post((req, res) => {
 
 //updates a message given an id
 router.route('/update/:id').post((req, res) => {
-  Message.findById(req.params.id)
-    .then(message => {
-      message.sender = req.body.sender;
-      message.receiver = req.body.receiver;
-      message.message = req.body.message;
-
-      message.save()
-        .then(() => res.json('Message updated.'))
-        .catch(err => res.status(400).json('Error: ' + err));
-    })
+  Message.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => res.json('Message updated.'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

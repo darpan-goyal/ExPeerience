@@ -30,14 +30,8 @@ router.route('/add').post((req, res) => {
 
 //updates a college given an id
 router.route('/update/:id').post((req, res) => {
-  College.findById(req.params.id)
-    .then(college => {
-      college.name = req.body.name;
-
-      college.save()
-        .then(() => res.json('College updated.'))
-        .catch(err => res.status(400).json('Error: ' + err));
-    })
+  College.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => res.json('College updated.'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

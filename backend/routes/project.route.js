@@ -42,20 +42,8 @@ router.route('/add').post((req, res) => {
 
 //updates a project given an id
 router.route('/update/:id').post((req, res) => {
-  Project.findById(req.params.id)
-    .then(project => {
-      project.name = req.body.name;
-      project.college = req.body.college;
-      project.majors = req.body.majors;
-      project.description = req.body.description;
-      project.skills = req.body.skills;
-      project.creator = req.body.creator;
-      project.peers = req.body.peers;
-
-      project.save()
-        .then(() => res.json('Project updated.'))
-        .catch(err => res.status(400).json('Error: ' + err));
-    })
+  Project.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => res.json('Project updated.'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

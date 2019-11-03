@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Button, ControlLabel, FormGroup, FormControl, PageHeader } from "react-bootstrap";
-import "./profileEdit.css";
+import "../styles/profileEdit.css";
 
 export default function ProfileEdit(props) {
   const [firstName, setFirstName] = useState("");
@@ -15,8 +15,6 @@ export default function ProfileEdit(props) {
 
   const [collegeList, setCollegeList] = useState([]);
   const [majorList, setMajorList] = useState([]);
-
-  const [isLoading, hasLoaded] = useState(true);
   
   function validateForm() {
     return (
@@ -29,32 +27,28 @@ export default function ProfileEdit(props) {
   }
 
   useEffect(() => {
-    if (isLoading) {
-      axios.get('http://localhost:3000/user/' + props.userID)
-        .then(res => {
-          setFirstName(res.data.firstName);
-          setLastName(res.data.lastName);
-          setBiography(res.data.biography);
-          setCollege(res.data.college);
-          setMajor(res.data.major);
-        })
-        .catch(error => console.log(error));
+    axios.get('http://localhost:3000/user/' + props.userID)
+      .then(res => {
+        setFirstName(res.data.firstName);
+        setLastName(res.data.lastName);
+        setBiography(res.data.biography);
+        setCollege(res.data.college);
+        setMajor(res.data.major);
+      })
+      .catch(error => console.log(error));
 
-      axios.get('http://localhost:3000/college')
-        .then(res => {
-          setCollegeList(res.data);
-        })
-        .catch(error => console.log(error));
+    axios.get('http://localhost:3000/college')
+      .then(res => {
+        setCollegeList(res.data);
+      })
+      .catch(error => console.log(error));
 
-      axios.get('http://localhost:3000/major')
-        .then(res => {
-          setMajorList(res.data);
-        })
-        .catch(error => console.log(error));
-      
-      hasLoaded(false);
-    }
-  });
+    axios.get('http://localhost:3000/major')
+      .then(res => {
+        setMajorList(res.data);
+      })
+      .catch(error => console.log(error));
+  }, []);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -102,10 +96,10 @@ export default function ProfileEdit(props) {
             value={college}
             onChange={e => setCollege(e.target.value)}
           >
-            <option value={college} disabled>{college}</option>
-            {
+            <option value = "" disabled selected>Select...</option>
+            { 
               collegeList.map((option) => {
-                return (<option value={option.name}>{option.name}</option>)
+                return (<option value={option._id}>{option.name}</option>)
               })
             }
           </FormControl>
@@ -117,10 +111,10 @@ export default function ProfileEdit(props) {
             value={major}
             onChange={e => setMajor(e.target.value)}
           >
-            <option value={major} disabled>{major}</option>
+            <option value = "" disabled selected>Select...</option>
             {
               majorList.map((option) => {
-                return (<option value={option.name}>{option.name}</option>)
+                return (<option value={option._id}>{option.name}</option>)
               })
             }
           </FormControl>

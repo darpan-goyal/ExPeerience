@@ -41,28 +41,28 @@ frontend router connects the pages to each other
   }
 
   /* adapted from: https://codepen.io/wbeeftink/pen/dIaDH */
-.tags {
-  list-style: none;
-  margin: 0;
-  overflow: hidden; 
-  padding: 0;
-  padding-left: 38%;
-}
+  .tags {
+    list-style: none;
+    margin: 0;
+    overflow: hidden; 
+    padding: 0;
+    padding-left: 38%;
+  }
 
-.tags li {
-    float: left;
-}
+  .tags li {
+      float: left;
+  }
 
-.tag {
-  background: #F76C6C;
-  border-radius: 3px;
-  color: white;
-  display: inline-block;
-  height: 26px;
-  line-height: 26px;
-  padding: 0 20px 0 23px;
-  position: relative;
-  margin: 0 10px 10px 0;
-  text-decoration: none;
-}
+  .tag {
+    background: #F76C6C;
+    border-radius: 3px;
+    color: white;
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 20px 0 23px;
+    position: relative;
+    margin: 0 10px 10px 0;
+    text-decoration: none;
+  }
 }

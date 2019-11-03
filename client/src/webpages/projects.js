@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { PageHeader } from "react-bootstrap";
-import "./projects.css";
+import "../styles/projects.css";
 
 export default function Projects(props) {
   const [projectList, setProjectList] = useState([]);

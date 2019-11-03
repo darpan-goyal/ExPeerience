@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Button, Media, PageHeader, Tab, Tabs } from "react-bootstrap";
-import "./profile.css";
+import "../styles/profile.css";
 
 export default function Profile(props) {
   const [firstName, setFirstName] = useState("");
@@ -19,14 +19,24 @@ export default function Profile(props) {
         setFirstName(res.data.firstName);
         setLastName(res.data.lastName);
         setBiography(res.data.biography);
-        setCollege(res.data.college);
-        setMajor(res.data.major);
         setSkills(res.data.skills);
         setPicture(res.data.picture);
         setResume(res.data.resume);
+
+        axios.get('http://localhost:3000/college/' + res.data.college)
+          .then(res => {
+            setCollege(res.data.name);
+          })
+          .catch(error => console.log(error));
+
+        axios.get('http://localhost:3000/major/' + res.data.major)
+          .then(res => {
+            setMajor(res.data.name);
+          })
+          .catch(error => console.log(error));
       })
       .catch(error => console.log(error));
-  });
+  }, []);
 
   function editProfile() {
     props.history.push("/profile/edit")

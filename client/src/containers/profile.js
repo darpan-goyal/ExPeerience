@@ -3,8 +3,6 @@ import axios from 'axios';
 import { Button, Media, PageHeader, Tab, Tabs } from "react-bootstrap";
 import "./profile.css";
 
-
-
 export default function Profile(props) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -13,8 +11,7 @@ export default function Profile(props) {
   const [major, setMajor] = useState("");
   const [skills, setSkills] = useState([]);
   const [picture, setPicture] = useState("/profile/profile.png");
-  const [resume, setResume] = useState("public/FergusonResume102019.pdf");
-
+  const [resume, setResume] = useState("/resume/resume.pdf");
 
   useEffect(() => {
     axios.get('http://localhost:3000/user/' + props.userID)
@@ -39,13 +36,13 @@ export default function Profile(props) {
     <div className="Profile">
       <PageHeader>
         Profile
-        <Button className="pull-right" bsSize="medium" type="submit" onClick={editProfile} >
+        <Button className="pull-right" bsSize="medium" type="submit" onClick={editProfile}>
           Edit
         </Button>
       </PageHeader>
       <Media>
         <Media.Left>
-          <img width={150} height={150} src={picture} alt="profilePicture"/>
+          <img src={picture} width={150} height={150}/>
         </Media.Left>
         <Media.Body>
           <Media.Heading>{firstName} {lastName}</Media.Heading>
@@ -61,15 +58,10 @@ export default function Profile(props) {
           <br></br>
           <li><a class="tag">Java</a></li>
           <li><a class="tag">Python</a></li>
-          <li><a class="tag">JavaScript</a></li>
-            
+          <li><a class="tag">JavaScript</a></li>  
         </Tab>
         <Tab eventKey={3} title="Resume">
-          <Media>
-          <Media.Left>
-          <img width={150} height={150} src={resume} alt="res"/>
-        </Media.Left>
-          </Media>
+            <embed src={resume + "#toolbar=0&view=FitV"} position="absolute" width="100%" height="1100px"/>
         </Tab>
       </Tabs>
     </div>

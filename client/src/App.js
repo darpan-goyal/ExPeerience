@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { Nav, Navbar, NavItem } from "react-bootstrap";
-import Routes from "./routes";
+import Routes from "./routes/routes.js";
 import "./App.css";
 
 function App(props) {

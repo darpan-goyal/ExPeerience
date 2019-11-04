@@ -11,7 +11,7 @@ import SignUp from "../webpages/signUp";
 import Profile from "../webpages/profile";
 import ProfileEdit from "../webpages/profileEdit";
 import Projects from "../webpages/projects";
-import SearchPage from "../webpages/searchPage";
+import SearchPage from "../webpages/browse";
 
 export default function Routes({ appProps }) {
   return (

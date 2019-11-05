@@ -10,7 +10,7 @@ router.route('/:id').get((req, res) => {
 
 //gets all majors
 router.route('/').get((req, res) => {
-  Major.find()
+  Major.find().sort({ name: 1 })
     .then(major => res.json(major))
     .catch(err => res.status(400).json('Error: ' + err));
 });

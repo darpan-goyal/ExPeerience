@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Button, ControlLabel, FormGroup, FormControl, PageHeader } from "react-bootstrap";
+import Select from 'react-select';
 import "../styles/profileEdit.css";
 
 export default function ProfileEdit(props) {
@@ -32,8 +33,18 @@ export default function ProfileEdit(props) {
         setFirstName(res.data.firstName);
         setLastName(res.data.lastName);
         setBiography(res.data.biography);
-        setCollege(res.data.college);
-        setMajor(res.data.major);
+
+        axios.get('http://localhost:3000/college/' + res.data.college)
+          .then(res => {
+            setCollege(res.data);
+          })
+          .catch(error => console.log(error));
+
+        axios.get('http://localhost:3000/major/' + res.data.major)
+          .then(res => {
+            setMajor(res.data);
+          })
+          .catch(error => console.log(error));
       })
       .catch(error => console.log(error));
 
@@ -57,8 +68,8 @@ export default function ProfileEdit(props) {
       firstName: firstName,
       lastName: lastName,
       biography: biography,
-      college: college,
-      major: major
+      college: college._id,
+      major: major._id
     }
 
     axios.post('http://localhost:3000/user/update/' + props.userID, user)
@@ -91,33 +102,19 @@ export default function ProfileEdit(props) {
         </FormGroup>
         <FormGroup bsSize="large">
           <ControlLabel>College</ControlLabel>
-          <FormControl 
-            componentClass="select"
-            value={college}
-            onChange={e => setCollege(e.target.value)}
-          >
-            <option value = "" disabled selected>Select...</option>
-            { 
-              collegeList.map((option) => {
-                return (<option value={option._id}>{option.name}</option>)
-              })
-            }
-          </FormControl>
+          <Select
+            value={{value: college, label: college.name}}
+            onChange={e => setCollege(e.value)}
+            options={collegeList.map((college) => ({ value: college, label: college.name }))}
+          />
         </FormGroup>
         <FormGroup bsSize="large">
           <ControlLabel>Major</ControlLabel>
-          <FormControl 
-            componentClass="select"
-            value={major}
-            onChange={e => setMajor(e.target.value)}
-          >
-            <option value = "" disabled selected>Select...</option>
-            {
-              majorList.map((option) => {
-                return (<option value={option._id}>{option.name}</option>)
-              })
-            }
-          </FormControl>
+          <Select
+            value={{value: major, label: major.name}}
+            onChange={e => setMajor(e.value)}
+            options={majorList.map((major) => ({ value: major, label: major.name }))}
+          />
         </FormGroup>
         <FormGroup bsSize="large">
           <ControlLabel>Biography</ControlLabel>

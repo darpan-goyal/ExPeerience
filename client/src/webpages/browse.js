@@ -15,28 +15,16 @@ export default function Projects(props) {
 
   useEffect(() => {
     axios.get('http://localhost:3000/project')
-      .then(res => {
-        setProjectList(res.data);
-      })
-      .catch(error => console.log(error));
+      .then(res => { setProjectList(res.data) })
 
     axios.get('http://localhost:3000/college')
-      .then(res => {
-        setCollegeList(res.data);
-      })
-      .catch(error => console.log(error));
+      .then(res => { setCollegeList(res.data) })
       
     axios.get('http://localhost:3000/major')
-      .then(res => {
-        setMajorList(res.data);
-      })
-      .catch(error => console.log(error));
-
+      .then(res => { setMajorList(res.data) })
+      
     axios.get('http://localhost:3000/skill')
-      .then(res => {
-        setSkillList(res.data);
-      })
-      .catch(error => console.log(error));
+      .then(res => { setSkillList(res.data); })      
   }, []); 
 
   function handleSubmit(event) {

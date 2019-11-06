@@ -16,27 +16,26 @@ export default function Profile(props) {
   useEffect(() => {
     axios.get('http://localhost:3000/user/' + props.userID)
       .then(res => {
-        setFirstName(res.data.firstName);
-        setLastName(res.data.lastName);
-        setBiography(res.data.biography);
-        setSkills(res.data.skills);
-        setPicture(res.data.picture);
-        setResume(res.data.resume);
+        if (res.data.firstName)
+          setFirstName(res.data.firstName);
+        if (res.data.lastName)
+          setLastName(res.data.lastName);
+        if (res.data.biography)
+          setBiography(res.data.biography);
+        if (res.data.skills) 
+          setSkills(res.data.skills);
+        if (res.data.picture)
+          setPicture(res.data.picture);
+        if (res.data.resume)
+          setResume(res.data.resume);
 
         axios.get('http://localhost:3000/college/' + res.data.college)
-          .then(res => {
-            setCollege(res.data.name);
-          })
-          .catch(error => console.log(error));
+          .then(res => { setCollege(res.data.name) })
 
         axios.get('http://localhost:3000/major/' + res.data.major)
-          .then(res => {
-            setMajor(res.data.name);
-          })
-          .catch(error => console.log(error));
+          .then(res => { setMajor(res.data.name) })
       })
-      .catch(error => console.log(error));
-  }, []);
+  }, [props.userID]);
 
   function editProfile() {
     props.history.push("/profile/edit")
@@ -52,7 +51,7 @@ export default function Profile(props) {
       </PageHeader>
       <Media>
         <Media.Left>
-          <img src={picture} width={150} height={150}/>
+          <img src={picture} alt="" width={150} height={150}/>
         </Media.Left>
         <Media.Body>
           <Media.Heading>{firstName} {lastName}</Media.Heading>

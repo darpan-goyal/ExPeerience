@@ -10,9 +10,9 @@ export default function ProfileEdit(props) {
   const [biography, setBiography] = useState("");
   const [college, setCollege] = useState("");
   const [major, setMajor] = useState("");
-  const [skills, setSkills] = useState(null);
-  const [picture, setPicture] = useState(null);
-  const [resume, setResume] = useState(null);
+  const [skills, setSkills] = useState([]);
+  const [picture, setPicture] = useState("");
+  const [resume, setResume] = useState("");
 
   const [collegeList, setCollegeList] = useState([]);
   const [majorList, setMajorList] = useState([]);
@@ -30,36 +30,26 @@ export default function ProfileEdit(props) {
   useEffect(() => {
     axios.get('http://localhost:3000/user/' + props.userID)
       .then(res => {
-        setFirstName(res.data.firstName);
-        setLastName(res.data.lastName);
-        setBiography(res.data.biography);
+        if (res.data.firstName)
+          setFirstName(res.data.firstName);
+        if (res.data.lastName)
+          setLastName(res.data.lastName);
+        if (res.data.biography)
+          setBiography(res.data.biography);
 
         axios.get('http://localhost:3000/college/' + res.data.college)
-          .then(res => {
-            setCollege(res.data);
-          })
-          .catch(error => console.log(error));
+          .then(res => { setCollege(res.data) })
 
         axios.get('http://localhost:3000/major/' + res.data.major)
-          .then(res => {
-            setMajor(res.data);
-          })
-          .catch(error => console.log(error));
+          .then(res => { setMajor(res.data) })
       })
-      .catch(error => console.log(error));
 
     axios.get('http://localhost:3000/college')
-      .then(res => {
-        setCollegeList(res.data);
-      })
-      .catch(error => console.log(error));
+      .then(res => { setCollegeList(res.data) })
 
     axios.get('http://localhost:3000/major')
-      .then(res => {
-        setMajorList(res.data);
-      })
-      .catch(error => console.log(error));
-  }, []);
+      .then(res => { setMajorList(res.data) })
+  }, [props.userID]);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -74,7 +64,6 @@ export default function ProfileEdit(props) {
 
     axios.post('http://localhost:3000/user/update/' + props.userID, user)
       .then(() => props.history.push("/profile"))
-      .catch(error => console.log(error));
   }
 
   return (

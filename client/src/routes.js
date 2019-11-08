@@ -10,6 +10,7 @@ import SignUp from "./containers/signUp";
 import Profile from "./containers/profile";
 import ProfileEdit from "./containers/profileEdit";
 import Projects from "./containers/projects";
+import ProjectsCreate from "./containers/projectsCreate";
 import SearchPage from "./containers/searchPage";
 
 export default function Routes({ appProps }) {
@@ -21,6 +22,7 @@ export default function Routes({ appProps }) {
       <AppliedRoute path="/profile" exact component={Profile} appProps={appProps} />
       <AppliedRoute path="/profile/edit" exact component={ProfileEdit} appProps={appProps} />
       <AppliedRoute path="/projects" exact component={Projects} appProps={appProps} />
+      <AppliedRoute path="/projects/create" exact component = {ProjectsCreate} appProps={appProps} />
       <AppliedRoute path="/browse" exact component = {SearchPage} appProps={appProps} />
       <Route component={NotFound} />
     </Switch>

@@ -14,6 +14,7 @@ export default function Profile(props) {
   const [resume, setResume] = useState("/resume/resume.pdf");
 
   useEffect(() => {
+    console.log('print');
     axios.get('http://localhost:3000/user/' + props.userID)
       .then(res => {
         setFirstName(res.data.firstName);
@@ -26,7 +27,7 @@ export default function Profile(props) {
         setResume(res.data.resume);
       })
       .catch(error => console.log(error));
-  });
+  }, []);
 
   function editProfile() {
     props.history.push("/profile/edit")

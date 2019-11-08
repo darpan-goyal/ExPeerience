@@ -10,7 +10,7 @@ router.route('/:id').get((req, res) => {
 
 //gets all colleges
 router.route('/').get((req, res) => {
-  College.find()
+  College.find().sort({ name: 1 })
     .then(college => res.json(college))
     .catch(err => res.status(400).json('Error: ' + err));
 });

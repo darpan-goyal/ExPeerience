@@ -10,7 +10,7 @@ router.route('/:id').get((req, res) => {
 
 //gets all skills
 router.route('/').get((req, res) => {
-  Skill.find()
+  Skill.find().sort({ name: 1 })
     .then(skill => res.json(skill))
     .catch(err => res.status(400).json('Error: ' + err));
 });

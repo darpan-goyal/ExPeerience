@@ -4,10 +4,10 @@ const Schema = mongoose.Schema;
 
 const projectSchema = new Schema({
     name: { type: String },
-    college: { type: String },
-    majors: { type: [String], },
-    description: { type: String, default: "Project description goes here." },
-    skills: { type: [String], default: ["Skills go here."] },
+    description: { type: String },
+    college: { type: Schema.Types.ObjectId, ref: 'College' },
+	majors: [{ type: Schema.Types.ObjectId, ref: 'Major' }],
+    skills: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     creator: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     peers: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 });

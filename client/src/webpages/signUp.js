@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import { Button, ControlLabel, FormGroup, FormControl } from "react-bootstrap";
-import "./signUp.css";
+import "../styles/signUp.css";
 
 export default function SignUp(props) {
   const [username, setUsername] = useState("");

@@ -1,17 +1,17 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import NotFound from "./containers/notFound";
-import AppliedRoute from "./components/appliedRoute";
+import AppliedRoute from "./appliedRoute";
 
-import Home from "./containers/home";
-import Login from "./containers/login";
-import SignUp from "./containers/signUp";
-import Profile from "./containers/profile";
-import ProfileEdit from "./containers/profileEdit";
-import Projects from "./containers/projects";
-import ProjectsCreate from "./containers/projectsCreate";
-import SearchPage from "./containers/searchPage";
+import NotFound from "../webpages/notFound";
+
+import Home from "../webpages/home";
+import Login from "../webpages/login";
+import SignUp from "../webpages/signUp";
+import Profile from "../webpages/profile";
+import ProfileEdit from "../webpages/profileEdit";
+import Projects from "../webpages/projects";
+import SearchPage from "../webpages/browse";
 
 export default function Routes({ appProps }) {
   return (

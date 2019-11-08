@@ -30,11 +30,11 @@
 
 * Place your webpages here:
 
-		/client/src/containers/
+		/client/src/webpages/
 
 * Set up all routes here:
 
-		/client/src/routes.js
+		/client/routes/routes.js
 
 * Place any routes that you want visible in the navigation bar here:
 

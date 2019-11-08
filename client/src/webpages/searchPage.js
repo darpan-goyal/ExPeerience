@@ -1,5 +1,5 @@
 import React , { useState } from 'react';
-import './searchPage.css';
+import '../styles/searchPage.css';
 import searchData from './searchData';
 import SearchItem from './searchItem';
 import {Button} from "react-bootstrap";

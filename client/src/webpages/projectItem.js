@@ -6,6 +6,7 @@ export default class projectItem extends React.Component {
   constructor(props) {
     super();
     this.state = {
+      college: '',
       majorNames: [],
       skillNames: [],
       peerNames: [],
@@ -13,6 +14,11 @@ export default class projectItem extends React.Component {
   }
 
   componentDidMount() {
+    axios.get('http://localhost:3000/college/' + this.props.college)
+      .then(res => {
+        this.setState({college: res.data.name});
+      })
+
     this.props.majors.forEach(major =>
       axios.get('http://localhost:3000/major/' + major)
         .then(res => {
@@ -45,7 +51,7 @@ export default class projectItem extends React.Component {
       <div className="project-item">
         <div className="name-box">
           <h1>{this.props.name}</h1>
-          <p>{this.props.college}</p>
+          <p>{this.state.college}</p>
           <p>{this.props.description}</p>
         </div>
         <div className="other-box">

@@ -12,6 +12,7 @@ import Profile from "../webpages/profile";
 import ProfileEdit from "../webpages/profileEdit";
 import Projects from "../webpages/projects";
 import SearchPage from "../webpages/browse";
+import ProjectsCreate from "../webpages/projectsCreate";
 
 export default function Routes({ appProps }) {
   return (

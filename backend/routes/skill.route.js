@@ -26,9 +26,7 @@ router.route('/').get((req, res) => {
 router.route('/add').post((req, res) => {
   const name = req.body.name;
 
-  const newSkill = new Skill({
-    name
-  });
+  const newSkill = new Skill({ name });
 
   newSkill.save()
     .then(() => res.json('Skill added.'))

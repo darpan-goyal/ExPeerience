@@ -19,9 +19,7 @@ router.route('/').get((req, res) => {
 router.route('/add').post((req, res) => {
   const name = req.body.name;
 
-  const newMajor = new Major({
-      name
-  });
+  const newMajor = new Major({ name });
 
   newMajor.save()
     .then(() => res.json('Major added.'))

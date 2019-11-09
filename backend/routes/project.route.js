@@ -54,4 +54,15 @@ router.route('/:id').delete((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+//searches for projects given college, major, and skills
+router.route('/search').post((req, res) => {
+  Project.find({ 
+    'college': { $in: req.body.college }, 
+    'majors': { $in: req.body.majors },
+    'skills': { $in: req.body.skills }
+  })
+    .then(project => res.json(project))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 module.exports = router;

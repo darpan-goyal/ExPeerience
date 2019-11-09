@@ -19,9 +19,7 @@ router.route('/').get((req, res) => {
 router.route('/add').post((req, res) => {
   const name = req.body.name;
 
-  const newCollege = new College({
-      name
-  });
+  const newCollege = new College({ name });
 
   newCollege.save()
     .then(() => res.json('College added.'))

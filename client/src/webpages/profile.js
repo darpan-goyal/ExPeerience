@@ -14,6 +14,7 @@ export default function Profile(props) {
   const [resume, setResume] = useState("/resume/resume.pdf");
 
   useEffect(() => {
+    console.log('print');
     axios.get('http://localhost:3000/user/' + props.userID)
       .then(res => {
         if (res.data.firstName)

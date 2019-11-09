@@ -23,7 +23,6 @@ export default function Profile(props) {
           setLastName(res.data.lastName);
         if (res.data.biography)
           setBiography(res.data.biography);
-
         if (res.data.picture)
           setPicture(res.data.picture);
         if (res.data.resume)

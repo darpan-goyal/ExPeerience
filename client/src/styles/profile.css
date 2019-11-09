@@ -41,7 +41,7 @@ frontend router connects the pages to each other
   }
 
   /* adapted from: https://codepen.io/wbeeftink/pen/dIaDH */
-  .tags {
+  .badge {
     list-style: none;
     margin: 0;
     overflow: hidden; 
@@ -49,11 +49,11 @@ frontend router connects the pages to each other
     padding-left: 38%;
   }
 
-  .tags li {
+  .badge li {
       float: left;
   }
 
-  .tag {
+  .badge {
     background: #F76C6C;
     border-radius: 3px;
     color: white;

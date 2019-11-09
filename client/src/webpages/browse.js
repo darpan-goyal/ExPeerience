@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Button } from "react-bootstrap";
+import { Button, ListGroup, ListGroupItem } from "react-bootstrap";
 import Select from 'react-select';
 
 export default function Projects(props) {
-  const [college, setCollege] = useState([]);
-  const [major, setMajor] = useState([]);
+  const [college, setCollege] = useState("");
+  const [major, setMajor] = useState("");
   const [skills, setSkills] = useState([]);
 
   const [projectList, setProjectList] = useState([]);
@@ -31,16 +31,23 @@ export default function Projects(props) {
       .catch(error => console.log(error));     
   }, []); 
 
+  //still need to handle logic of query
   function handleSubmit(event) {
     event.preventDefault();
 
-    console.log(college);
-    console.log(major);
-    console.log(skills);
+    const searchData = {
+      college: college,
+      majors: major,
+      skills: skills
+    };
+
+    axios.post('http://localhost:3000/project/search', searchData)
+      .then(res=> { setProjectList(res.data) })
+      .catch(error => console.log("error of some kind"));
   }
 
   return (
-    <div className="Browse mainContainer">
+    <div className="Browse">
       <form onSubmit={handleSubmit}>
         <Select
           isClearable
@@ -70,6 +77,9 @@ export default function Projects(props) {
           Search
         </Button>
       </form>
+      <ListGroup>
+        {projectList.map(project => <ListGroupItem>{project.name}</ListGroupItem>)}
+      </ListGroup>
     </div>
   );
 }

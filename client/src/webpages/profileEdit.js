@@ -11,8 +11,8 @@ export default function ProfileEdit(props) {
   const [college, setCollege] = useState("");
   const [major, setMajor] = useState("");
   const [skills, setSkills] = useState([]);
-  const [picture, setPicture] = useState("");
-  const [resume, setResume] = useState("");
+  //const [picture, setPicture] = useState("");
+  //const [resume, setResume] = useState("");
 
   const [collegeList, setCollegeList] = useState([]);
   const [majorList, setMajorList] = useState([]);

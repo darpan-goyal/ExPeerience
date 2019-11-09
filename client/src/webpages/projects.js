@@ -25,27 +25,27 @@ export default function Projects(props) {
         setProjectList(filteredProjects);
       })
       .catch(error => console.log(error));
-  }, projectList);
+  }, [projectList, props.userID]);
 
   function handleDelete(pid) {
     axios.delete('http://localhost:3000/project/' + pid)
       .then(res => {
-        setProjectList(projectList.filter(p => p._id != pid))
+        setProjectList(projectList.filter(p => p._id !== pid))
       })
       .catch(error => console.log(error));
   }
 
   function handleLeave(pid, uID, peers) {
-    let temp = peers.filter(u => u != uID);
+    let temp = peers.filter(u => u !== uID);
     axios.post('http://localhost:3000/project/update/' + pid, {peers: temp})
       .then(res => {
-        setProjectList(projectList.filter(p => p._id != pid))
+        setProjectList(projectList.filter(p => p._id !== pid))
       })
       .catch(error => console.log(error));
   }
 
   function handleEdit(pid) {
-    var projectObj = projectList.filter(p => p._id == pid);
+    var projectObj = projectList.filter(p => p._id === pid);
     props.history.push({pathname: '/projects/edit',
       data: projectObj
     });
@@ -71,6 +71,6 @@ export default function Projects(props) {
 }
 // Project page needs to show the projects that you are in, not the ones you own
 // By defaults, when creating a page, add the creator into the project.
-// When making buttons, if creator == logged in user, show button for edit
+// When making buttons, if creator === logged in user, show button for edit
 // else show leave button
 // show expand button on all the projects?

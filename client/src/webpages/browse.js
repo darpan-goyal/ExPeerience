@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 import Select from 'react-select';
 
 export default function Projects(props) {
-  const [colleges, setColleges] = useState([]);
+  const [college, setCollege] = useState([]);
   const [majors, setMajors] = useState([]);
   const [skills, setSkills] = useState([]);
 
@@ -16,43 +16,54 @@ export default function Projects(props) {
   useEffect(() => {
     axios.get('http://localhost:3000/project')
       .then(res => { setProjectList(res.data) })
+      .catch(error => console.log(error));
 
     axios.get('http://localhost:3000/college')
       .then(res => { setCollegeList(res.data) })
+      .catch(error => console.log(error));
       
     axios.get('http://localhost:3000/major')
       .then(res => { setMajorList(res.data) })
+      .catch(error => console.log(error));
       
     axios.get('http://localhost:3000/skill')
-      .then(res => { setSkillList(res.data); })      
+      .then(res => { setSkillList(res.data) })
+      .catch(error => console.log(error));     
   }, []); 
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    alert("hello");
+    console.log(college);
+    console.log(majors);
+    console.log(skills);
   }
 
   return (
     <div className="Browse">
       <form onSubmit={handleSubmit}>
         <Select
-          isMulti
-          value={colleges}
-          onChange={e => setColleges(e)}
-          options={collegeList.map((college) => ({ value: college._id, label: college.name }))}
+          value={college}
+          options={collegeList}
+          getOptionLabel = {(option)=>option.name}
+          getOptionValue = {(option)=>option._id}
+          onChange={e => setCollege(e)}
         />
         <Select
           isMulti
           value={majors}
+          options={majorList}
+          getOptionLabel = {(option)=>option.name}
+          getOptionValue = {(option)=>option._id}
           onChange={e => setMajors(e)}
-          options={majorList.map((major) => ({ value: major._id, label: major.name }))}
         />
         <Select
           isMulti
           value={skills}
+          options={skillList}
+          getOptionLabel = {(option)=>option.name}
+          getOptionValue = {(option)=>option._id}
           onChange={e => setSkills(e)}
-          options={skillList.map((skill) => ({ value: skill._id, label: skill.name }))}
         />
         <Button bsStyle="primary" bsSize="large" block type="submit">
           Search

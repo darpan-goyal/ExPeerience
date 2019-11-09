@@ -11,9 +11,9 @@ import SignUp from "../webpages/signUp";
 import Profile from "../webpages/profile";
 import ProfileEdit from "../webpages/profileEdit";
 import Projects from "../webpages/projects";
-import SearchPage from "../webpages/browse";
-import ProjectsCreate from "../webpages/projectsCreate";
 import ProjectsEdit from "../webpages/projectsEdit";
+import ProjectsCreate from "../webpages/projectsCreate";
+import Browse from "../webpages/browse";
 
 export default function Routes({ appProps }) {
   return (
@@ -24,9 +24,9 @@ export default function Routes({ appProps }) {
       <AppliedRoute path="/profile" exact component={Profile} appProps={appProps} />
       <AppliedRoute path="/profile/edit" exact component={ProfileEdit} appProps={appProps} />
       <AppliedRoute path="/projects" exact component={Projects} appProps={appProps} />
-      <AppliedRoute path="/projects/create" exact component = {ProjectsCreate} appProps={appProps} />
       <AppliedRoute path="/projects/edit" exact component = {ProjectsEdit} appProps={appProps} />
-      <AppliedRoute path="/browse" exact component = {SearchPage} appProps={appProps} />
+      <AppliedRoute path="/projects/create" exact component = {ProjectsCreate} appProps={appProps} />
+      <AppliedRoute path="/browse" exact component = {Browse} appProps={appProps} />
       <Route component={NotFound} />
     </Switch>
   );

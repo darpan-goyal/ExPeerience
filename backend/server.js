@@ -9,8 +9,10 @@ app.use(cors());
 app.use(express.json());
 
 const uri = "mongodb+srv://Team:Teamwork@expeerience-8vflz.mongodb.net/expeerience?retryWrites=true&w=majority";
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true });
-mongoose.connect(uri, { useFindAndModify: false });
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useUnifiedTopology', true);
+mongoose.set('useCreateIndex', true);
+mongoose.connect(uri);
 
 const connection = mongoose.connection;
 connection.once('open', () => {

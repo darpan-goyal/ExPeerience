@@ -16,6 +16,7 @@ export default function ProfileEdit(props) {
 
   const [collegeList, setCollegeList] = useState([]);
   const [majorList, setMajorList] = useState([]);
+  const [skillList, setSkillList] = useState([]);
   
   function validateForm() {
     return (
@@ -39,16 +40,29 @@ export default function ProfileEdit(props) {
 
         axios.get('http://localhost:3000/college/' + res.data.college)
           .then(res => { setCollege(res.data) })
+          .catch(error => console.log(error));
 
         axios.get('http://localhost:3000/major/' + res.data.major)
           .then(res => { setMajor(res.data) })
+          .catch(error => console.log(error));
+
+        axios.post('http://localhost:3000/skill/', res.data.skills)
+          .then(res => { setSkills(res.data) })
+          .catch(error => console.log(error));
       })
+      .catch(error => console.log(error));
 
     axios.get('http://localhost:3000/college')
       .then(res => { setCollegeList(res.data) })
+      .catch(error => console.log(error));
 
     axios.get('http://localhost:3000/major')
       .then(res => { setMajorList(res.data) })
+      .catch(error => console.log(error));
+
+    axios.get('http://localhost:3000/skill')
+      .then(res => { setSkillList(res.data) })
+      .catch(error => console.log(error));
   }, [props.userID]);
 
   function handleSubmit(event) {
@@ -58,12 +72,14 @@ export default function ProfileEdit(props) {
       firstName: firstName,
       lastName: lastName,
       biography: biography,
-      college: college._id,
-      major: major._id
+      college: college,
+      major: major,
+      skills: skills
     }
 
     axios.post('http://localhost:3000/user/update/' + props.userID, user)
       .then(() => props.history.push("/profile"))
+      .catch(error => console.log(error));
   }
 
   return (
@@ -92,17 +108,32 @@ export default function ProfileEdit(props) {
         <FormGroup bsSize="large">
           <ControlLabel>College</ControlLabel>
           <Select
-            value={{value: college, label: college.name}}
-            onChange={e => setCollege(e.value)}
-            options={collegeList.map((college) => ({ value: college, label: college.name }))}
+            value={college}
+            options={collegeList}
+            getOptionLabel = {(option)=>option.name}
+            getOptionValue = {(option)=>option._id}
+            onChange={e => setCollege(e)}
           />
         </FormGroup>
         <FormGroup bsSize="large">
           <ControlLabel>Major</ControlLabel>
           <Select
-            value={{value: major, label: major.name}}
-            onChange={e => setMajor(e.value)}
-            options={majorList.map((major) => ({ value: major, label: major.name }))}
+            value={major}
+            options={majorList}
+            getOptionLabel = {(option)=>option.name}
+            getOptionValue = {(option)=>option._id}
+            onChange={e => setMajor(e)}
+          />
+        </FormGroup>
+        <FormGroup bsSize="large">
+          <ControlLabel>Skills</ControlLabel>
+          <Select
+            isMulti
+            value={skills}
+            options={skillList}
+            getOptionLabel = {(option)=>option.name}
+            getOptionValue = {(option)=>option._id}
+            onChange={e => setSkills(e)}
           />
         </FormGroup>
         <FormGroup bsSize="large">

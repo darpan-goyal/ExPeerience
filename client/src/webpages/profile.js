@@ -22,8 +22,7 @@ export default function Profile(props) {
           setLastName(res.data.lastName);
         if (res.data.biography)
           setBiography(res.data.biography);
-        if (res.data.skills) 
-          setSkills(res.data.skills);
+
         if (res.data.picture)
           setPicture(res.data.picture);
         if (res.data.resume)
@@ -31,14 +30,21 @@ export default function Profile(props) {
 
         axios.get('http://localhost:3000/college/' + res.data.college)
           .then(res => { setCollege(res.data.name) })
+          .catch(error => console.log(error));
 
         axios.get('http://localhost:3000/major/' + res.data.major)
           .then(res => { setMajor(res.data.name) })
+          .catch(error => console.log(error));
+
+        axios.post('http://localhost:3000/skill/', res.data.skills)
+          .then(res => { setSkills(res.data) })
+          .catch(error => console.log(error));
       })
+      .catch(error => console.log(error));
   }, [props.userID]);
 
   function editProfile() {
-    props.history.push("/profile/edit")
+    props.history.push("/profile/edit");
   }
 
   return (
@@ -64,10 +70,7 @@ export default function Profile(props) {
           <p>{biography}</p>
         </Tab>
         <Tab eventKey={2} title="Skills">
-          <br></br>
-          <li><a class="tag">Java</a></li>
-          <li><a class="tag">Python</a></li>
-          <li><a class="tag">JavaScript</a></li>  
+          <p>{skills.map((skill) => (<li><a class="tag">{skill.name}</a></li> ))}</p>
         </Tab>
         <Tab eventKey={3} title="Resume">
             <embed src={resume + "#toolbar=0&view=FitV"} position="absolute" width="100%" height="1100px"/>

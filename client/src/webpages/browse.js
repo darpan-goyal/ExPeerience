@@ -5,7 +5,7 @@ import Select from 'react-select';
 
 export default function Projects(props) {
   const [college, setCollege] = useState([]);
-  const [majors, setMajors] = useState([]);
+  const [major, setMajor] = useState([]);
   const [skills, setSkills] = useState([]);
 
   const [projectList, setProjectList] = useState([]);
@@ -35,14 +35,15 @@ export default function Projects(props) {
     event.preventDefault();
 
     console.log(college);
-    console.log(majors);
+    console.log(major);
     console.log(skills);
   }
 
   return (
-    <div className="Browse">
+    <div className="Browse mainContainer">
       <form onSubmit={handleSubmit}>
         <Select
+          isClearable
           value={college}
           options={collegeList}
           getOptionLabel = {(option)=>option.name}
@@ -50,12 +51,12 @@ export default function Projects(props) {
           onChange={e => setCollege(e)}
         />
         <Select
-          isMulti
-          value={majors}
+          isClearable
+          value={major}
           options={majorList}
           getOptionLabel = {(option)=>option.name}
           getOptionValue = {(option)=>option._id}
-          onChange={e => setMajors(e)}
+          onChange={e => setMajor(e)}
         />
         <Select
           isMulti

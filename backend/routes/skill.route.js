@@ -8,6 +8,13 @@ router.route('/:id').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+//gets specific skills given ids
+router.route('/').post((req, res) => {
+  Skill.find({'_id': { $in: req.body }}).sort({ name: 1 })
+    .then(skill => res.json(skill))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 //gets all skills
 router.route('/').get((req, res) => {
   Skill.find().sort({ name: 1 })

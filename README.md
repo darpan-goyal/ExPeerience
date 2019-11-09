@@ -60,4 +60,4 @@
 
 * Access routes in the frontend by using axios. You can find axios examples in: 
 
-		/client/src/containers/
+		/client/src/webpages/

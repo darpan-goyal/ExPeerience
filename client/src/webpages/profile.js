@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Button, Media, PageHeader, Tab, Tabs } from "react-bootstrap";
+import { Badge, Button, Media, PageHeader, Tab, Tabs } from "react-bootstrap";
 import "../styles/profile.css";
 
 export default function Profile(props) {
@@ -70,7 +70,7 @@ export default function Profile(props) {
           <p>{biography}</p>
         </Tab>
         <Tab eventKey={2} title="Skills">
-          <p>{skills.map((skill) => (<li><a class="tag">{skill.name}</a></li> ))}</p>
+          <p>{skills.map(skill => (<li><Badge>{skill.name}</Badge></li>) )}</p>
         </Tab>
         <Tab eventKey={3} title="Resume">
             <embed src={resume + "#toolbar=0&view=FitV"} position="absolute" width="100%" height="1100px"/>

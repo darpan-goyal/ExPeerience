@@ -44,8 +44,11 @@ export default function Projects(props) {
       .catch(error => console.log(error));
   }
 
-  function handleEdit() {
-    props.history.push('/project/edit');
+  function handleEdit(pid) {
+    var projectObj = projectList.filter(p => p._id == pid);
+    props.history.push({pathname: '/projects/edit',
+      data: projectObj
+    });
   }
 
   function createProject() {

@@ -4,23 +4,19 @@ import { Button, ControlLabel, FormGroup, FormControl, PageHeader } from "react-
 import "../styles/projectsCreate.css";
 import Select from 'react-select';
 
-export default function ProjectsCreate(props) {
-  const [name, setProjectName] = useState("");
-  const [college, setCollege] = useState("");
+export default function ProjectsEdit(props) {
+  const [name, setProjectName] = useState(props.location.data[0].name);
+  const [college, setCollege] = useState('');
   const [majors, setMajors] = useState([]);
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState(props.location.data[0].description);
   const [skills, setSkills] = useState([]);
-  // This garbage is used to populate the dropdown menus
-  const [collegeList, setCollegeList] = useState([]);
-  var collegeOptions = [];
-  collegeList.forEach(m => collegeOptions.push({label:m.name, value:m._id}));
-  const [majorList, setMajorList] = useState([]);
-  var majorOptions = [];
-  majorList.forEach(m => majorOptions.push({label:m.name, value:m._id}));
-  const [skillList, setSkillList] = useState([]);
-  var skillOptions = [];
-  skillList.forEach(m => skillOptions.push({label:m.name, value:m._id}));
-
+  const [peers, setPeers] = useState(props.location.data[0].peers);
+  // Drop down menu lists
+  var [collegeOptions, setCollegeOptions] = useState([]);
+  var [majorOptions, setMajorOptions] = useState([]);
+  var [skillOptions, setSkillOptions] = useState([]);
+  var [peerOptions, setPeerOptions] = useState([]);
+  
   const [isLoading, hasLoaded] = useState(true);
   
   function validateForm() {
@@ -34,19 +30,44 @@ export default function ProjectsCreate(props) {
     if (isLoading) {
       axios.get('http://localhost:3000/college')
         .then(res => {
-          setCollegeList(res.data);
+          res.data.forEach(c => collegeOptions.push({label:c.name, value:c._id}));
+          setCollege(collegeOptions.filter(c => c.value === props.location.data[0].college));
         })
         .catch(error => console.log(error));
 
       axios.get('http://localhost:3000/major')
         .then(res => {
-          setMajorList(res.data);
+          res.data.forEach(m => majorOptions.push({label:m.name, value:m._id}));
+          var result = [];
+          for(var i = 0; i < props.location.data[0].majors.length; i++) {
+            result = result.concat(majorOptions.filter(
+              m => m.value === props.location.data[0].majors[i]));
+          }
+          setMajors(result);
         })
         .catch(error => console.log(error));
       
       axios.get('http://localhost:3000/skill')
         .then(res => {
-          setSkillList(res.data);
+          res.data.forEach(s => skillOptions.push({label:s.name, value:s._id}));
+          var result = [];
+          for(var i = 0; i < props.location.data[0].skills.length; i++) {
+            result = result.concat(skillOptions.filter(
+              s => s.value === props.location.data[0].skills[i]));
+          }
+          setSkills(result);
+        })
+        .catch(error => console.log(error));
+
+      axios.get('http://localhost:3000/user')
+        .then(res => {
+          res.data.forEach(u => peerOptions.push({label: u.username, value: u._id}))
+          var result = [];
+          for(var i = 0; i < props.location.data[0].peers.length; i++) {
+            result = result.concat(peerOptions.filter(
+              p => p.value === props.location.data[0].peers[i]));
+          }
+          setPeers(result);
         })
         .catch(error => console.log(error));
       
@@ -68,8 +89,9 @@ export default function ProjectsCreate(props) {
 
     majors.forEach(m => project.majors.push(m.value));
     skills.forEach(s => project.skills.push(s.value));
+    peers.forEach(p => props.userID != p.value ? project.peers.push(p.value) : {});
 
-    axios.post('http://localhost:3000/project/add', project)
+    axios.post('http://localhost:3000/project/update/' + props.location.data[0]._id, project)
       .then(() => props.history.push("/projects"))
       .catch(error => console.log(error));
   }
@@ -78,9 +100,9 @@ export default function ProjectsCreate(props) {
     <div className="ProjectsCreate">
       <form onSubmit={handleSubmit}>
         <PageHeader>
-          Create Project
+          Edit Project
           <Button className="pull-right" bsSize="medium" disabled={!validateForm()} type="submit">
-            Create
+            Save
           </Button>
         </PageHeader>
         <FormGroup bsSize="large">
@@ -94,6 +116,7 @@ export default function ProjectsCreate(props) {
           <ControlLabel>College</ControlLabel>
           <Select
             name="college"
+            value={college}
             options={collegeOptions}
             onChange={e => setCollege(e)}
           />
@@ -103,6 +126,7 @@ export default function ProjectsCreate(props) {
           <ControlLabel>Majors</ControlLabel>
           <Select
             isMulti
+            value={majors}
             options={majorOptions}
             onChange={e => setMajors(e)}
           />
@@ -111,6 +135,7 @@ export default function ProjectsCreate(props) {
           <ControlLabel>Skills</ControlLabel>
           <Select
             isMulti
+            value={skills}
             options={skillOptions}
             onChange={e => setSkills(e)}
           />
@@ -121,6 +146,15 @@ export default function ProjectsCreate(props) {
             componentClass="textarea"
             value={description}
             onChange={e => setDescription(e.target.value)}
+          />
+        </FormGroup>
+        <FormGroup bsSize="large">
+          <ControlLabel>Peers</ControlLabel>
+          <Select
+            isMulti
+            value={peers}
+            options={peerOptions}
+            onChange={e => setPeers(e)}
           />
         </FormGroup>
       </form>

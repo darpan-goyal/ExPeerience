@@ -108,6 +108,8 @@ export default function ProfileEdit(props) {
         <FormGroup bsSize="large">
           <ControlLabel>College</ControlLabel>
           <Select
+            isClearable
+            placeholder=""
             value={college}
             options={collegeList}
             getOptionLabel = {(option)=>option.name}
@@ -118,6 +120,8 @@ export default function ProfileEdit(props) {
         <FormGroup bsSize="large">
           <ControlLabel>Major</ControlLabel>
           <Select
+            isClearable
+            placeholder=""
             value={major}
             options={majorList}
             getOptionLabel = {(option)=>option.name}
@@ -129,6 +133,7 @@ export default function ProfileEdit(props) {
           <ControlLabel>Skills</ControlLabel>
           <Select
             isMulti
+            placeholder=""
             value={skills}
             options={skillList}
             getOptionLabel = {(option)=>option.name}

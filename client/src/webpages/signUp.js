@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
-import { Button, ControlLabel, FormGroup, FormControl } from "react-bootstrap";
+import { Button, ControlLabel, FormGroup, FormControl, PageHeader } from "react-bootstrap";
 import "../styles/signUp.css";
 
 export default function SignUp(props) {
@@ -46,6 +46,9 @@ export default function SignUp(props) {
   return (
     <div className="SignUp">
       <form onSubmit={handleSubmit}>
+
+        <PageHeader>Sign Up</PageHeader>
+
         <FormGroup bsSize="large">
           <ControlLabel>First Name</ControlLabel>
           <FormControl
@@ -53,6 +56,7 @@ export default function SignUp(props) {
             onChange={e => setFirstName(e.target.value)}
           />
         </FormGroup>
+
         <FormGroup bsSize="large">
           <ControlLabel>Last Name</ControlLabel>
           <FormControl
@@ -60,6 +64,7 @@ export default function SignUp(props) {
             onChange={e => setLastName(e.target.value)}
           />
         </FormGroup>
+
         <FormGroup bsSize="large">
           <ControlLabel>Username</ControlLabel>
           <FormControl
@@ -67,6 +72,7 @@ export default function SignUp(props) {
             onChange={e => setUsername(e.target.value)}
           />
         </FormGroup>
+
         <FormGroup bsSize="large">
           <ControlLabel>Password</ControlLabel>
           <FormControl
@@ -75,6 +81,7 @@ export default function SignUp(props) {
             onChange={e => setPassword(e.target.value)}
           />
         </FormGroup>
+
         <FormGroup bsSize="large">
           <ControlLabel>Confirm Password</ControlLabel>
           <FormControl
@@ -83,9 +90,11 @@ export default function SignUp(props) {
             onChange={e => setConfirmPassword(e.target.value)}
           />
         </FormGroup>
+
         <Button block bsSize="large" disabled={!validateForm()} type="submit">
           Sign Up
         </Button>
+        
       </form>
     </div>
   );

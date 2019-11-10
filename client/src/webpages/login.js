@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
-import { Button, ControlLabel, FormGroup, FormControl } from "react-bootstrap";
+import { Button, ControlLabel, FormGroup, FormControl, PageHeader } from "react-bootstrap";
 import "../styles/login.css";
 
 export default function Login(props) {
@@ -38,6 +38,7 @@ export default function Login(props) {
   return (
     <div className="Login">
       <form onSubmit={handleSubmit}>
+        <PageHeader>Login</PageHeader>
         <FormGroup bsSize="large">
           <ControlLabel>Username</ControlLabel>
           <FormControl

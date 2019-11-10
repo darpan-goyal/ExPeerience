@@ -1,8 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Questrial&display=swap');
 
 :root {
-  --primary-color: #24305E;
-  --secondary-color: #F8E9A1;
+  --primary-color: black;
+  --secondary-color: white;
+
+  /*
+  blue: #24305E
+  yellow: #F8E9A1
+  */
 }
 
 html {

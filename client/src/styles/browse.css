@@ -1,5 +1,11 @@
 @media all and (min-width: 480px) {
   .select {
-    width: 440px;
+    width: 100%;
+    font-size: 100%;
+  }
+
+  .container {
+    padding-left: 0;
+    padding-right: 0;
   }
 }

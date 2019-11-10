@@ -1,5 +1,9 @@
 @media all and (min-width: 480px) {
-    .ProfileEdit .form-group {
-        max-width: 600px;
-    }
+  .ProfileEdit .form-group {
+    max-width: 600px;
+  }
+
+  .ProfileEdit .form-control {
+    height: 38px;
+  }
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Button, ListGroup, ListGroupItem, PageHeader } from "react-bootstrap";
+import { Button, ControlLabel, FormGroup, ListGroup, ListGroupItem, PageHeader, Grid, Row, Col } from "react-bootstrap";
 import Select from 'react-select';
 import "../styles/browse.css";
 
@@ -49,36 +49,57 @@ export default function Projects(props) {
         <PageHeader>
           Browse
         </PageHeader>
-        <Select className="select"
-          isClearable
-          value={college}
-          options={collegeList}
-          getOptionLabel = {(option)=>option.name}
-          getOptionValue = {(option)=>option._id}
-          onChange={e => setCollege(e)}
-        />
-        <Select className="select"
-          isClearable
-          value={major}
-          options={majorList}
-          getOptionLabel = {(option)=>option.name}
-          getOptionValue = {(option)=>option._id}
-          onChange={e => setMajor(e)}
-        />
-        <Select className="select"
-          isMulti
-          value={skills}
-          options={skillList}
-          getOptionLabel = {(option)=>option.name}
-          getOptionValue = {(option)=>option._id}
-          onChange={e => setSkills(e)}
-        />
-        <Button bsStyle="success" bsSize="large" block type="submit">
+        <Grid>
+          <Row>
+            <Col xs={6}>
+              <FormGroup bsSize="large">
+                <ControlLabel>Filter by college</ControlLabel>
+                <Select className="select"
+                  isClearable
+                  value={college}
+                  options={collegeList}
+                  getOptionLabel = {(option)=>option.name}
+                  getOptionValue = {(option)=>option._id}
+                  onChange={e => setCollege(e)}
+                />
+              </FormGroup>
+            </Col>
+            <Col xs={6}>
+              <FormGroup bsSize="large">
+                <ControlLabel>Filter by major</ControlLabel>
+                <Select className="select"
+                  isClearable
+                  value={major}
+                  options={majorList}
+                  getOptionLabel = {(option)=>option.name}
+                  getOptionValue = {(option)=>option._id}
+                  onChange={e => setMajor(e)}
+                />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <FormGroup bsSize="large">
+                <ControlLabel>Filter by skills</ControlLabel>
+                <Select className="select"
+                  isMulti
+                  value={skills}
+                  options={skillList}
+                  getOptionLabel = {(option)=>option.name}
+                  getOptionValue = {(option)=>option._id}
+                  onChange={e => setSkills(e)}
+                />
+              </FormGroup>
+            </Col>
+          </Row>
+        </Grid>
+        <Button bsStyle="primary" bsSize="large" block type="submit">
           Search
         </Button>
       </form>
       <ListGroup>
-        {projectList.map(project => <ListGroupItem onClick={() => console.log(project._id)}>{project.name}</ListGroupItem>)}
+        {projectList.map(project => <ListGroupItem onClick={() => console.log(project.name)}>{project.name}</ListGroupItem>)}
       </ListGroup>
     </div>
   );

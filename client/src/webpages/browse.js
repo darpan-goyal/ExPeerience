@@ -4,9 +4,9 @@ import { Button, ListGroup, ListGroupItem } from "react-bootstrap";
 import Select from 'react-select';
 
 export default function Projects(props) {
-  const [college, setCollege] = useState("");
-  const [major, setMajor] = useState("");
-  const [skills, setSkills] = useState([]);
+  const [college, setCollege] = useState(null);
+  const [major, setMajor] = useState(null);
+  const [skills, setSkills] = useState(null);
 
   const [projectList, setProjectList] = useState([]);
   const [collegeList, setCollegeList] = useState([]);
@@ -14,10 +14,6 @@ export default function Projects(props) {
   const [skillList, setSkillList] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/project')
-      .then(res => { setProjectList(res.data) })
-      .catch(error => console.log(error));
-
     axios.get('http://localhost:3000/college')
       .then(res => { setCollegeList(res.data) })
       .catch(error => console.log(error));
@@ -28,16 +24,21 @@ export default function Projects(props) {
       
     axios.get('http://localhost:3000/skill')
       .then(res => { setSkillList(res.data) })
-      .catch(error => console.log(error));     
+      .catch(error => console.log(error));
+
+    /*
+    axios.get('http://localhost:3000/project')
+      .then(res => { setProjectList(res.data) })
+      .catch(error => console.log(error));
+    */
   }, []); 
 
-  //still need to handle logic of query
   function handleSubmit(event) {
     event.preventDefault();
 
     const searchData = {
       college: college,
-      majors: major,
+      major: major,
       skills: skills
     };
 

@@ -56,11 +56,16 @@ router.route('/:id').delete((req, res) => {
 
 //searches for projects given college, major, and skills
 router.route('/search').post((req, res) => {
-  Project.find({ 
-    'college': { $in: req.body.college }, 
-    'majors': { $in: req.body.majors },
-    'skills': { $in: req.body.skills }
-  })
+  var filter = {};
+
+  if (req.body.college)
+    filter.college = req.body.college;
+  if (req.body.major)
+    filter.majors = req.body.major;
+  if (req.body.skills)
+    filter.skills = { $in: req.body.skills };
+
+  Project.find(filter)
     .then(project => res.json(project))
     .catch(err => res.status(400).json('Error: ' + err));
 });

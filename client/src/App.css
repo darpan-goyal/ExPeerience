@@ -29,10 +29,14 @@ body {
   padding-top: 15px;
 }
 
-.App .navbar {
+.navbar {
   background-color: var(--primary-color);
 }
 
-.App .navbar-brand {
+.navbar-brand {
   font-weight: bold;
+}
+
+.btn:focus {
+  outline: 0 !important;
 }

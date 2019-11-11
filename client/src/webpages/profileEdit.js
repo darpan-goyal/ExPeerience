@@ -87,7 +87,7 @@ export default function ProfileEdit(props) {
       <form onSubmit={handleSubmit}>
         <PageHeader>
           Edit Profile
-          <Button className="pull-right" bsSize="medium" disabled={!validateForm()} type="submit">
+          <Button className="pull-right" disabled={!validateForm()} type="submit">
             Save
           </Button>
         </PageHeader>

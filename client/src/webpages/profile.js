@@ -50,7 +50,7 @@ export default function Profile(props) {
     <div className="Profile">
       <PageHeader>
         Profile
-        <Button className="pull-right" bsSize="medium" type="submit" onClick={editProfile}>
+        <Button className="pull-right" type="submit" onClick={editProfile}>
           Edit
         </Button>
       </PageHeader>

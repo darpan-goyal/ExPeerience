@@ -63,7 +63,8 @@ router.route('/search').post((req, res) => {
   if (req.body.major)
     filter.majors = req.body.major;
   if (req.body.skills)
-    filter.skills = { $in: req.body.skills };
+    if (req.body.skills.length > 0)
+      filter.skills = { $in: req.body.skills };
 
   Project.find(filter)
     .then(project => res.json(project))

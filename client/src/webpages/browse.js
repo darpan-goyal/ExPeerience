@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Button, Col, ControlLabel, FormGroup, Grid, ListGroup, ListGroupItem, PageHeader, Panel, Row } from "react-bootstrap";
+import { Button, Col, ControlLabel, FormGroup, Grid, ListGroup, ListGroupItem, PageHeader, Panel, Row, Well} from "react-bootstrap";
 import Select from 'react-select';
 import "../styles/browse.css";
 
 export default function Projects(props) {
-  const [college, setCollege] = useState(null);
-  const [major, setMajor] = useState(null);
-  const [skills, setSkills] = useState(null);
+  const [collegeFilter, setCollegeFilter] = useState(null);
+  const [majorFilter, setMajorFilter] = useState(null);
+  const [skillsFilter, setSkillsFilter] = useState(null);
 
   const [collegeList, setCollegeList] = useState([]);
   const [majorList, setMajorList] = useState([]);
   const [skillList, setSkillList] = useState([]);
 
   const [projectList, setProjectList] = useState([]);
-  const [project, setProject] = useState([]);
+  const [project, setProject] = useState(null);
 
   const [toggle, setToggle] = useState(false);
 
@@ -37,23 +37,22 @@ export default function Projects(props) {
   }, []); 
 
   function toggles() {
-    setProject([]);
-    setToggle(!toggle);
-
-    if (toggle) {
+    if (toggle)
       document.getElementById('toggle').innerText = 'Filter';
-    } else {
+    else
       document.getElementById('toggle').innerText = 'Apply';
-    }
+
+    setToggle(!toggle);
+    setProject(null);
   }
 
   function search(event) {
     event.preventDefault();
 
     const searchData = {
-      college: college,
-      major: major,
-      skills: skills
+      college: collegeFilter,
+      major: majorFilter,
+      skills: skillsFilter
     };
 
     axios.post('http://localhost:3000/project/search', searchData)
@@ -63,20 +62,21 @@ export default function Projects(props) {
 
   function displayProjects() {
     return (projectList.map(project => 
-      <ListGroupItem 
-        header={project.name}
-        onClick={()=>setProject(project)}
-      > 
-        {project.description}
+      <ListGroupItem header={project.name} onClick={()=>setProject(project)}> 
+        {project.college}
       </ListGroupItem>
     ));
   }
 
-  // still needs work
   function viewProject() {
-    return (
-      <p>{project.name}</p>
-    );
+    if (project) {
+      return (
+        <ListGroupItem>
+          <b>{project.name}</b>
+          <p>{project.description}</p>
+        </ListGroupItem>
+      );
+    }
   }
 
   return (
@@ -88,51 +88,51 @@ export default function Projects(props) {
             Filter
           </Button>
         </PageHeader>
-        <Panel className="filter" expanded={toggle}>
+        <Panel className="filter-panel" expanded={toggle}>
           <Panel.Collapse>
             <Grid>
               <Row>
                 <Col xs={6}>
-                  <FormGroup bsSize="large">
+                  <FormGroup>
                     <ControlLabel>Filter by college</ControlLabel>
                     <Select 
                       className="select"
                       isClearable
-                      value={college}
+                      value={collegeFilter}
                       options={collegeList}
                       getOptionLabel = {(option)=>option.name}
                       getOptionValue = {(option)=>option._id}
-                      onChange={e => setCollege(e)}
+                      onChange={e => setCollegeFilter(e)}
                     />
                   </FormGroup>
                 </Col>
                 <Col xs={6}>
-                  <FormGroup bsSize="large">
+                  <FormGroup>
                     <ControlLabel>Filter by major</ControlLabel>
                     <Select 
                       className="select"
                       isClearable
-                      value={major}
+                      value={majorFilter}
                       options={majorList}
                       getOptionLabel = {(option)=>option.name}
                       getOptionValue = {(option)=>option._id}
-                      onChange={e => setMajor(e)}
+                      onChange={e => setMajorFilter(e)}
                     />
                   </FormGroup>
                 </Col>
               </Row>
               <Row>
                 <Col xs={12}>
-                  <FormGroup bsSize="large">
+                  <FormGroup>
                     <ControlLabel>Filter by skills</ControlLabel>
                     <Select 
                       className="select"
                       isMulti
-                      value={skills}
+                      value={skillsFilter}
                       options={skillList}
                       getOptionLabel = {(option)=>option.name}
                       getOptionValue = {(option)=>option._id}
-                      onChange={e => setSkills(e)}
+                      onChange={e => setSkillsFilter(e)}
                     />
                   </FormGroup>
                 </Col>
@@ -141,20 +141,24 @@ export default function Projects(props) {
           </Panel.Collapse>
         </Panel>
       </form>
-      <Grid>
-        <Row>
-        <Col xs={6}>
-          <ListGroup>
-            {displayProjects()}
-          </ListGroup>
-        </Col>
-        <Col xs={6}>
-          <ListGroup>
-            {viewProject()}
-          </ListGroup>
-        </Col>
-        </Row>
-      </Grid>
+      <Panel className="projects-panel" expanded={!toggle}>
+        <Panel.Collapse>
+          <Grid>
+            <Row>
+            <Col xs={6}>
+              <ListGroup>
+                {displayProjects()}
+              </ListGroup>
+            </Col>
+            <Col xs={6}>
+              <ListGroup>
+                {viewProject()}
+              </ListGroup>
+            </Col>
+            </Row>
+          </Grid>
+        </Panel.Collapse>
+      </Panel>
     </div>
   );
 }

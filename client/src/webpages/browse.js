@@ -43,7 +43,6 @@ export default function Projects(props) {
       document.getElementById('toggle').innerText = 'Apply';
 
     setToggle(!toggle);
-    setProject(null);
   }
 
   function search(event) {
@@ -56,7 +55,10 @@ export default function Projects(props) {
     };
 
     axios.post('http://localhost:3000/project/search', searchData)
-      .then(res => { setProjectList(res.data) })
+      .then(res => { 
+        setProjectList(res.data);
+        setProject(null);
+      })
       .catch(error => console.log(error));
   }
 

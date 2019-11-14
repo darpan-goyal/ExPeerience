@@ -13,7 +13,7 @@ import ProfileEdit from "../webpages/profileEdit";
 import Projects from "../webpages/projects";
 import ProjectsEdit from "../webpages/projectsEdit";
 import ProjectsCreate from "../webpages/projectsCreate";
-import Browse from "../webpages/browse";
+import Browse from "../webpages/browse/browse";
 
 export default function Routes({ appProps }) {
   return (

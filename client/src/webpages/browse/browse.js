@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Button, Col, ControlLabel, FormGroup, Grid, ListGroup, ListGroupItem, PageHeader, Panel, Row, Well} from "react-bootstrap";
+import { Button, Col, ControlLabel, FormGroup, Grid, ListGroup, ListGroupItem, PageHeader, Panel, Row } from "react-bootstrap";
 import Select from 'react-select';
-import "../styles/browse.css";
+import BrowseItem from './browseItem';
+import "../../styles/browse.css";
 
 export default function Projects(props) {
   const [collegeFilter, setCollegeFilter] = useState(null);
@@ -20,19 +21,19 @@ export default function Projects(props) {
 
   useEffect(() => {
     axios.get('http://localhost:3000/college')
-      .then(res => { setCollegeList(res.data) })
+      .then(res => setCollegeList(res.data))
       .catch(error => console.log(error));
       
     axios.get('http://localhost:3000/major')
-      .then(res => { setMajorList(res.data) })
+      .then(res => setMajorList(res.data))
       .catch(error => console.log(error));
       
     axios.get('http://localhost:3000/skill')
-      .then(res => { setSkillList(res.data) })
+      .then(res => setSkillList(res.data))
       .catch(error => console.log(error));
 
     axios.get('http://localhost:3000/project')
-      .then(res => { setProjectList(res.data) })
+      .then(res => setProjectList(res.data))
       .catch(error => console.log(error));
   }, []); 
 
@@ -61,13 +62,14 @@ export default function Projects(props) {
       })
       .catch(error => console.log(error));
   }
-
+  
   function displayProjects() {
-    return (projectList.map(project => 
-      <ListGroupItem header={project.name} onClick={()=>setProject(project)}> 
-        {project.college}
-      </ListGroupItem>
-    ));
+    return projectList.map(project => 
+      <BrowseItem 
+        project={project}
+        onClick={setProject.bind(this)}
+      />
+    )
   }
 
   function viewProject() {

@@ -10,9 +10,9 @@ import Login from "../webpages/login";
 import SignUp from "../webpages/signUp";
 import Profile from "../webpages/profile";
 import ProfileEdit from "../webpages/profileEdit";
-import Projects from "../webpages/projects";
-import ProjectsEdit from "../webpages/projectsEdit";
-import ProjectsCreate from "../webpages/projectsCreate";
+import Projects from "../webpages/projects/projects";
+import ProjectsEdit from "../webpages/projects/projectsEdit";
+import ProjectsCreate from "../webpages/projects/projectsCreate";
 import Browse from "../webpages/browse/browse";
 
 export default function Routes({ appProps }) {

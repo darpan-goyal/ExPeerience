@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Badge, Button, Media, PageHeader, Tab, Tabs } from "react-bootstrap";
-import "../styles/profile.css";
+import "../../styles/profile.css";
 
 export default function Profile(props) {
   const [firstName, setFirstName] = useState("");

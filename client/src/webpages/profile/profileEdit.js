@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Button, ControlLabel, FormGroup, FormControl, PageHeader } from "react-bootstrap";
 import Select from 'react-select';
-import "../styles/profileEdit.css";
+import "../../styles/profileEdit.css";
 
 export default function ProfileEdit(props) {
   const [firstName, setFirstName] = useState("");

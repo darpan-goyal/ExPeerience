@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Button, PageHeader } from "react-bootstrap";
 import ProjectItem from './projectItem';
-import "../styles/projects.css";
+import "../../styles/projects.css";
 
 export default function Projects(props) {
   const [projectList, setProjectList] = useState([]);

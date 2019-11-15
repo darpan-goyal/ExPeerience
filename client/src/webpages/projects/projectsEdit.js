@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Button, ControlLabel, FormGroup, FormControl, PageHeader } from "react-bootstrap";
 import Select from 'react-select';
-import "../styles/projectsCreate.css";
+import "../../styles/projectsCreate.css";
 
 export default function ProjectsEdit(props) {
   const [name, setName] = useState(props.location.data[0].name);

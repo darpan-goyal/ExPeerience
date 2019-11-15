@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Button, ControlLabel, FormGroup, FormControl, PageHeader } from "react-bootstrap";
-import "../styles/projectsCreate.css";
+import "../../styles/projectsCreate.css";
 import Select from 'react-select';
 
 export default function ProjectsCreate(props) {

@@ -1,32 +1,19 @@
-import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import React from "react";
 import { ListGroupItem } from "react-bootstrap";
-import "../../styles/browse.css";
 
 export default function BrowseItem(props) {
-  const [college, setCollege] = useState("");
 
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    axios.get('http://localhost:3000/college/' + props.project.college)
-      .then(res => {
-        setCollege(res.data.name);
-        setLoading(false);
-      })
-      .catch(error => console.log(error));
-  });
-
-  if (loading) {
-    return null;
+  function getCollege(collegeID) {
+    const college = props.collegeList.find(college => college._id === collegeID);
+    return college.name;
   }
 
   return (
-    <ListGroupItem 
+    <ListGroupItem
       header={<b>{props.project.name}</b>}
       onClick={props.onClick.bind(this, props.project)}
     >
-      {college}
+      {getCollege(props.project.college)}
     </ListGroupItem>
   );
 }

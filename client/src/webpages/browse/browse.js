@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Button, Col, ControlLabel, FormGroup, Grid, ListGroup, ListGroupItem, PageHeader, Panel, Row } from "react-bootstrap";
+import { Button, Col, ControlLabel, FormGroup, Grid, ListGroup, PageHeader, Panel, Row } from "react-bootstrap";
 import Select from 'react-select';
-import BrowseItem from './browseItem';
+import BrowseItem from "./browseItem";
+import ProjectItem from "./projectItem";
 import "../../styles/browse.css";
 
-export default function Projects(props) {
+export default function Browse(props) {
   const [collegeFilter, setCollegeFilter] = useState(null);
   const [majorFilter, setMajorFilter] = useState(null);
   const [skillsFilter, setSkillsFilter] = useState(null);
@@ -13,11 +14,12 @@ export default function Projects(props) {
   const [collegeList, setCollegeList] = useState([]);
   const [majorList, setMajorList] = useState([]);
   const [skillList, setSkillList] = useState([]);
+  const [userList, setUserList] = useState([]);
 
   const [projectList, setProjectList] = useState([]);
   const [project, setProject] = useState(null);
 
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(true);
 
   useEffect(() => {
     axios.get('http://localhost:3000/college')
@@ -32,19 +34,10 @@ export default function Projects(props) {
       .then(res => setSkillList(res.data))
       .catch(error => console.log(error));
 
-    axios.get('http://localhost:3000/project')
-      .then(res => setProjectList(res.data))
+    axios.get('http://localhost:3000/user')
+      .then(res => setUserList(res.data))
       .catch(error => console.log(error));
-  }, []); 
-
-  function toggles() {
-    if (toggle)
-      document.getElementById('toggle').innerText = 'Filter';
-    else
-      document.getElementById('toggle').innerText = 'Apply';
-
-    setToggle(!toggle);
-  }
+  }, []);
 
   function search(event) {
     event.preventDefault();
@@ -62,25 +55,27 @@ export default function Projects(props) {
       })
       .catch(error => console.log(error));
   }
-  
+
   function displayProjects() {
-    return projectList.map(project => 
+    return (projectList.map(project => 
       <BrowseItem 
         project={project}
+        collegeList={collegeList}
         onClick={setProject.bind(this)}
       />
-    )
+    ))
   }
 
   function viewProject() {
-    if (project) {
-      return (
-        <ListGroupItem>
-          <b>{project.name}</b>
-          <p>{project.description}</p>
-        </ListGroupItem>
-      );
-    }
+    return (
+      <ProjectItem
+        project={project}
+        collegeList={collegeList}
+        majorList={majorList}
+        skillList={skillList}
+        userList={userList}
+      />
+    )
   }
 
   return (
@@ -88,7 +83,7 @@ export default function Projects(props) {
       <form onSubmit={search}>
         <PageHeader>
           Browse
-          <Button id="toggle" className="pull-right" type="submit" onClick={toggles}>
+          <Button className="pull-right" bsStyle="primary" type="submit" onClick={() => setToggle(!toggle)}>
             Filter
           </Button>
         </PageHeader>
@@ -99,8 +94,7 @@ export default function Projects(props) {
                 <Col xs={6}>
                   <FormGroup>
                     <ControlLabel>Filter by college</ControlLabel>
-                    <Select 
-                      className="select"
+                    <Select
                       isClearable
                       value={collegeFilter}
                       options={collegeList}
@@ -113,8 +107,7 @@ export default function Projects(props) {
                 <Col xs={6}>
                   <FormGroup>
                     <ControlLabel>Filter by major</ControlLabel>
-                    <Select 
-                      className="select"
+                    <Select
                       isClearable
                       value={majorFilter}
                       options={majorList}
@@ -129,8 +122,7 @@ export default function Projects(props) {
                 <Col xs={12}>
                   <FormGroup>
                     <ControlLabel>Filter by skills</ControlLabel>
-                    <Select 
-                      className="select"
+                    <Select
                       isMulti
                       value={skillsFilter}
                       options={skillList}
@@ -149,16 +141,16 @@ export default function Projects(props) {
         <Panel.Collapse>
           <Grid>
             <Row>
-            <Col xs={6}>
-              <ListGroup>
-                {displayProjects()}
-              </ListGroup>
-            </Col>
-            <Col xs={6}>
-              <ListGroup>
-                {viewProject()}
-              </ListGroup>
-            </Col>
+              <Col xs={6}>
+                <ListGroup>
+                  {displayProjects()}
+                </ListGroup>
+              </Col>
+              <Col xs={6}>
+                <ListGroup>
+                  {project && viewProject()}
+                </ListGroup>
+              </Col>
             </Row>
           </Grid>
         </Panel.Collapse>

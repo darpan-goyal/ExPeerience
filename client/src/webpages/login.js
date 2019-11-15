@@ -11,8 +11,8 @@ export default function Login(props) {
     return (
       username.length > 0 && 
       password.length > 0 &&
-      username.length < 13 &&
-      password.length < 13
+      username.length < 25 &&
+      password.length < 25
     );
   }
 
@@ -54,7 +54,7 @@ export default function Login(props) {
             onChange={e => setPassword(e.target.value)}
           />
         </FormGroup>
-        <Button block bsSize="large" disabled={!validateForm()} type="submit">
+        <Button block bsSize="large" bsStyle="primary" disabled={!validateForm()} type="submit">
           Login
         </Button>
       </form>

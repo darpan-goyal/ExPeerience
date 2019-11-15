@@ -23,8 +23,7 @@ export default function ProfileEdit(props) {
       firstName.length > 0 &&
       lastName.length > 0 &&
       firstName.length < 33 &&
-      lastName.length < 33 &&
-      biography.length < 1025
+      lastName.length < 33
     );
   }
 
@@ -87,7 +86,7 @@ export default function ProfileEdit(props) {
       <form onSubmit={handleSubmit}>
         <PageHeader>
           Edit Profile
-          <Button className="pull-right" disabled={!validateForm()} type="submit">
+          <Button className="pull-right" bsStyle="primary" disabled={!validateForm()} type="submit">
             Save
           </Button>
         </PageHeader>

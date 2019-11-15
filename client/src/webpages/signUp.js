@@ -86,7 +86,7 @@ export default function SignUp(props) {
             onChange={e => setConfirmPassword(e.target.value)}
           />
         </FormGroup>
-        <Button block bsSize="large" disabled={!validateForm()} type="submit">
+        <Button block bsSize="large" bsStyle="primary" disabled={!validateForm()} type="submit">
           Sign Up
         </Button>
       </form>

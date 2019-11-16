@@ -1,23 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Questrial&display=swap');
 
 :root {
-  --primary-color: black;
-  --secondary-color: white;
-
-  /*
-  blue: #24305E
-  yellow: #F8E9A1
-  */
-}
-
-html {
-  height: 100%
+  --text-color: black;
+  --background-color: peachpuff;
 }
 
 body {
-  min-height: 100%;
-  color: var(--primary-color);
-  background: var(--secondary-color);
+  color: var(--text-color);
+  background: var(--background-color);
   font-family: "Questrial", sans-serif;
   font-size: 16px;
   overflow-y: scroll;
@@ -29,14 +19,49 @@ body {
   padding-top: 15px;
 }
 
+.btn:focus {
+  outline: 0 !important;
+}
+
+.btn:focus-within {
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+
 .navbar {
-  background-color: var(--primary-color);
+  background-color: black;
 }
 
 .navbar-brand {
   font-weight: bold;
 }
 
-.btn:focus {
-  outline: 0 !important;
+.nav-tabs {
+  border-bottom: 1px solid white;
+}
+
+.page-header {
+  border-bottom: 1px solid white;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: silver;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: silver;
+}
+::-webkit-scrollbar-thumb:active {
+  background: gray;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
 }

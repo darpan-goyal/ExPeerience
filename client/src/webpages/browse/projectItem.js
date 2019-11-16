@@ -1,5 +1,5 @@
 import React from "react";
-import { ListGroupItem } from "react-bootstrap";
+import { Button, ListGroupItem, PageHeader } from "react-bootstrap";
 
 export default function ProjectItem(props) {
   function getCollegeName() {
@@ -29,12 +29,15 @@ export default function ProjectItem(props) {
 
   return (
     <>
-      <ListGroupItem>
-        <h3><b>{props.project.name}</b></h3>
-      </ListGroupItem>
+      <PageHeader className="page-header-project">
+        {props.project.name}
+        <Button className="pull-right" bsStyle="warning" type="submit">
+          Apply
+        </Button>
+      </PageHeader>
       <ListGroupItem>
         <b>Description</b>
-        <p>{props.project.description}</p>
+        <div>{props.project.description}</div>
       </ListGroupItem>
       <ListGroupItem>
         <b>College</b>

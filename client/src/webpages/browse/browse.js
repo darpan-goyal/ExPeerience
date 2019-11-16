@@ -87,7 +87,7 @@ export default function Browse(props) {
             Filter
           </Button>
         </PageHeader>
-        <Panel className="filter-panel" expanded={toggle}>
+        <Panel expanded={toggle}>
           <Panel.Collapse>
             <Grid>
               <Row>
@@ -137,7 +137,7 @@ export default function Browse(props) {
           </Panel.Collapse>
         </Panel>
       </form>
-      <Panel className="projects-panel" expanded={!toggle}>
+      <Panel expanded={!toggle}>
         <Panel.Collapse>
           <Grid>
             <Row>

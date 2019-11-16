@@ -28,20 +28,34 @@ export default function ProjectItem(props) {
   }
 
   return (
-    <ListGroupItem 
-      header={<b>{props.project.name}</b>}
-    >
-      <p>{props.project.description}</p>
-      <b>College</b>
-      {getCollegeName()}
-      <b>Majors</b>
-      {getMajorNames()}
-      <b>Skills</b>
-      {getSkillNames()}
-      <b>Creator</b>
-      {getCreatorName()}
-      <b>Peers</b>
-      {getPeerNames()}
-    </ListGroupItem>
+    <>
+      <ListGroupItem>
+        <h3><b>{props.project.name}</b></h3>
+      </ListGroupItem>
+      <ListGroupItem>
+        <b>Description</b>
+        <p>{props.project.description}</p>
+      </ListGroupItem>
+      <ListGroupItem>
+        <b>College</b>
+        {getCollegeName()}
+      </ListGroupItem>
+      <ListGroupItem>
+        <b>Majors</b>
+        {getMajorNames()}
+      </ListGroupItem>
+      <ListGroupItem>
+        <b>Skills</b>
+        {getSkillNames()}
+      </ListGroupItem>
+      <ListGroupItem>
+        <b>Creator</b>
+        {getCreatorName()}
+      </ListGroupItem>
+      <ListGroupItem>
+        <b>Peers</b>
+        {getPeerNames()}
+      </ListGroupItem>
+    </>
   );
 }

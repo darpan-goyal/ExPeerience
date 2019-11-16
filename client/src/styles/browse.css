@@ -1,7 +1,6 @@
 @media all and (min-width: 480px) {
-  .container {
-    padding-left: 0;
-    padding-right: 0;
+  .Browse p {
+    margin: 0;
   }
 
   .collapsing {
@@ -13,26 +12,29 @@
             transition: height .3s ease;
   }
 
-  .filter-panel {
-    border-top: 0;
-    border-left: 0;
-    border-right: 0;
-    border-bottom-color: white;
-    box-shadow: none;
+  .container {
+    padding-left: 0;
+    padding-right: 0;
   }
-
-  .projects-panel {
-    border: 0;
-    box-shadow: none;
-  }
-
+  
   .list-group {
-    max-height: calc(100vh - 270px);
+    max-height: calc(100vh - 250px);
     overflow-y: auto;
   }
-
+  
   .list-group-item {
-    margin-bottom: 1px;
     white-space: pre-wrap;
+    border-color: #ccc;
+  }
+
+  button.list-group-item:focus {
+    outline: 0 !important;
+  }
+
+  .panel {
+    margin-bottom: 0;
+    border: 0;
+    box-shadow: none;
+    background-color: var(--background-color);
   }
 }

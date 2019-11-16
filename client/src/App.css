@@ -28,6 +28,11 @@ body {
   border-color: #2e6da4;
 }
 
+.btn-warning:focus-within {
+  background-color: #f0ad4e;
+  border-color: #eea236;
+}
+
 .navbar {
   background-color: black;
 }

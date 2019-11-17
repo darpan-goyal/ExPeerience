@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { Nav, Navbar, NavItem } from "react-bootstrap";
@@ -6,12 +6,23 @@ import Routes from "./routes/routes.js";
 import "./App.css";
 
 function App(props) {
-  const [isAuthenticated, userHasAuthenticated] = useState(false);
-  const [userID, setUserID] = useState(null);
+  const _authenticated = () => window.localStorage.getItem("authenticated") || false;
+  const _userID = () => window.localStorage.getItem("userID") || null;
+
+  const [isAuthenticated, userHasAuthenticated] = useState(_authenticated);
+  const [userID, setUserID] = useState(_userID);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      window.localStorage.setItem("authenticated", isAuthenticated);
+      window.localStorage.setItem("userID", userID);
+    }
+  });
 
   function handleLogout() {
     setUserID(null);
     userHasAuthenticated(false);
+    window.localStorage.clear();
     props.history.push("/");
   }
   

@@ -3,12 +3,20 @@
     padding: 20px 0;
   }
 
+  .Login .page-header {
+    text-align: center;
+  }
+
   .Login form {
     margin: 0 auto;
     max-width: 320px;
   }
 
-  .Login .page-header {
+  .help-block-credentials {
+    display: block !important;
     text-align: center;
+    font-weight: bold;
+    color: #a94442 !important;
+    margin: 10px !important;
   }
 }

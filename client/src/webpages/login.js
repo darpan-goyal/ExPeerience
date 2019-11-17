@@ -1,19 +1,26 @@
 import React, { useState } from "react";
 import axios from 'axios';
-import { Button, ControlLabel, FormGroup, FormControl, PageHeader } from "react-bootstrap";
+import { Button, ControlLabel, FormGroup, FormControl, HelpBlock, PageHeader } from "react-bootstrap";
 import "../styles/login.css";
 
 export default function Login(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const [notAuthorized, setNotAuthorized] = useState(false);
+
   function validateForm() {
     return (
       username.length > 0 && 
       password.length > 0 &&
-      username.length < 25 &&
-      password.length < 25
+      username.length <= 50 &&
+      password.length <= 50
     );
+  }
+
+  function validate(field, max) {
+    if (field.length > max) return "error";
+    return null;
   }
 
   function handleSubmit(event) {
@@ -30,8 +37,10 @@ export default function Login(props) {
         props.userHasAuthenticated(true);
         props.history.push("/");
       })
-      .catch((error) => {
-        alert("Invalid credentials.");
+      .catch(() => {
+        setUsername("");
+        setPassword("");
+        setNotAuthorized(true);
       });
   }
 
@@ -39,24 +48,32 @@ export default function Login(props) {
     <div className="Login">
       <form onSubmit={handleSubmit}>
         <PageHeader>Login</PageHeader>
-        <FormGroup bsSize="large">
+        <FormGroup bsSize="large" validationState={validate(username, 50)}>
           <ControlLabel>Username</ControlLabel>
           <FormControl
             value={username}
             onChange={e => setUsername(e.target.value)}
           />
+          <FormControl.Feedback />
         </FormGroup>
-        <FormGroup bsSize="large">
+        <FormGroup bsSize="large" validationState={validate(password, 50)}>
           <ControlLabel>Password</ControlLabel>
           <FormControl
             type="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
+          <FormControl.Feedback />
         </FormGroup>
         <Button block bsSize="large" bsStyle="primary" disabled={!validateForm()} type="submit">
           Login
         </Button>
+        {
+          notAuthorized &&
+          <HelpBlock className="help-block-credentials">
+            Invalid credentials.
+          </HelpBlock>
+        }
       </form>
     </div>
   );

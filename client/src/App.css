@@ -37,6 +37,13 @@ a {
   border-color: #eea236;
 }
 
+.help-block {
+  display: inline-block;
+  max-width: 100%;
+  margin: auto;
+  color: black;
+}
+
 .navbar {
   background-color: black;
 }

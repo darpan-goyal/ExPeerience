@@ -3,18 +3,29 @@
     padding: 20px 0;
   }
 
+  .SignUp .page-header {
+    text-align: center;
+  }
+
   .SignUp form {
     margin: 0 auto;
     max-width: 320px;
   }
 
-  .SignUp form span.help-block {
-    font-size: 14px;
-    padding-bottom: 10px;
-    color: #999;
+  .SignUp .form-group {
+    margin-bottom: 10px;
   }
 
-  .SignUp .page-header {
+  .SignUp form span.help-block {
+    font-size: 14px;
+    color: gray;
+  }
+
+  .help-block-username {
+    display: block !important;
     text-align: center;
+    font-weight: bold;
+    color: #a94442 !important;
+    margin: 10px !important;
   }
 }

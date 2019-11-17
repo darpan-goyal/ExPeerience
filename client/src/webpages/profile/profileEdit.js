@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Button, ControlLabel, FormGroup, FormControl, PageHeader } from "react-bootstrap";
+import { Button, ControlLabel, FormGroup, FormControl, HelpBlock, PageHeader } from "react-bootstrap";
 import Select from 'react-select';
 import "../../styles/profileEdit.css";
 
@@ -22,9 +22,15 @@ export default function ProfileEdit(props) {
     return (
       firstName.length > 0 &&
       lastName.length > 0 &&
-      firstName.length < 33 &&
-      lastName.length < 33
+      firstName.length <= 50 &&
+      lastName.length <= 50
     );
+  }
+
+  function validate(field, max) {
+    if (field.length > max) return "error";
+    if (field.length <= 0) return "error";
+    return null;
   }
 
   useEffect(() => {
@@ -90,19 +96,23 @@ export default function ProfileEdit(props) {
             Save
           </Button>
         </PageHeader>
-        <FormGroup bsSize="large">
+        <FormGroup bsSize="large" validationState={validate(firstName, 50)}>
           <ControlLabel>First Name</ControlLabel>
           <FormControl
             value={firstName}
             onChange={e => setFirstName(e.target.value)}
           />
+          <FormControl.Feedback />
+          <HelpBlock>Required field</HelpBlock>
         </FormGroup>
-        <FormGroup bsSize="large">
+        <FormGroup bsSize="large" validationState={validate(lastName, 50)}>
           <ControlLabel>Last Name</ControlLabel>
           <FormControl
             value={lastName}
             onChange={e => setLastName(e.target.value)}
           />
+          <FormControl.Feedback />
+          <HelpBlock>Required field</HelpBlock>
         </FormGroup>
         <FormGroup bsSize="large">
           <ControlLabel>College</ControlLabel>

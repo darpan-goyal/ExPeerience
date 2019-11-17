@@ -6,4 +6,9 @@
   .ProfileEdit .form-control {
     height: 38px;
   }
+
+  .ProfileEdit form span.help-block {
+    font-size: 14px;
+    color: gray;
+  }
 }

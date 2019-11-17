@@ -20,20 +20,24 @@ export default function ProjectItem(props) {
 
   function getCreatorName() {
     const creator = props.userList.find(user => user._id === props.project.creator);
-    return (
-      <Link className="link-profile" to={"/profile/" + creator._id} target="_blank">
-        <u>{creator.firstName + " " + creator.lastName}</u>
-      </Link>
-    );
+    return ((
+      <div>
+        <Link className="link-profile" to={"/profile/" + creator._id} target="_blank">
+          <u>{creator.firstName + " " + creator.lastName}</u>
+        </Link>
+      </div>
+    ));
   }
 
   function getPeerNames() {
     const peers = props.userList.filter(user => props.project.peers.includes(user._id));
-    return (peers.map(peer =>
-      <Link className="link-profile" to={"/profile/" + peer._id} target="_blank">
-        <u>{peer.firstName + " " + peer.lastName}</u>
-      </Link>
-    ));
+    return (peers.map(peer => (
+      <div>
+        <Link className="link-profile" to={"/profile/" + peer._id} target="_blank">
+          <u>{peer.firstName + " " + peer.lastName}</u>
+        </Link>
+      </div>
+    )));
   }
 
   return (

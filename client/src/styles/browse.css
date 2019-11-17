@@ -44,7 +44,8 @@
   }
 
   .link-profile {
-    display: block;
+    width: auto;
+    display: inline-block;
     color: black;
   }
 }

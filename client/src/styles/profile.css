@@ -25,27 +25,38 @@
 
   /* adapted from: https://codepen.io/wbeeftink/pen/dIaDH */
   .badge {
-    list-style: none;
-    margin: 0;
-    overflow: hidden; 
-    padding: 0;
-    padding-left: 38%;
-  }
-
-  .badge li {
-      float: left;
-  }
-
-  .badge {
-    background: #F76C6C;
-    border-radius: 3px;
+    background: rgb(255, 133, 133);
+    border-radius: 3px 0 0 3px;
     color: white;
     display: inline-block;
     height: 26px;
     line-height: 26px;
     padding: 0 20px 0 23px;
     position: relative;
-    margin: 0 10px 10px 0;
+    margin: 15px 0px 0px 15px;
     text-decoration: none;
+    font-size: 14px;
+    text-align: left;
+  }
+
+  .badge:before {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+    content: '';
+    height: 6px;
+    left: 10px;
+    position: absolute;
+    width: 6px;
+    top: 10px;
+  }
+
+  .badge:hover {
+    background-color: #eee;
+    color: gray;
+  }
+
+  .badge:hover:after {
+    border-left-color: #eee;
   }
 }

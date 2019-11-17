@@ -76,7 +76,7 @@ export default function Profile(props) {
           <p>{biography}</p>
         </Tab>
         <Tab eventKey={2} title="Skills">
-          <p>{skills.map(skill => (<li><Badge>{skill.name}</Badge></li>) )}</p>
+          {skills.map(skill => (<div><Badge>{skill.name}</Badge></div>))}
         </Tab>
         <Tab eventKey={3} title="Resume">
             <embed src={resume + "#toolbar=0&view=FitV"} position="absolute" width="100%" height="1100px"/>

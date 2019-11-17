@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, ListGroupItem, NavItem, PageHeader } from "react-bootstrap";
+import { Button, ListGroupItem, PageHeader } from "react-bootstrap";
 
 export default function ProjectItem(props) {
   function getCollegeName() {

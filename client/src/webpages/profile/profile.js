@@ -45,7 +45,7 @@ export default function Profile(props) {
           .catch(error => console.log(error));
       })
       .catch(error => console.log(error));
-  }, []);
+  }, [props.userID, props.match.params.userID]);
 
   function editProfile() {
     props.history.push("/profile/edit/" + props.userID);

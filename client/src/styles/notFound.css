@@ -1,4 +1,6 @@
-.NotFound {
-    padding-top: 100px;
-    text-align: center;
-  }
+@media all and (min-width: 480px) {
+  .NotFound {
+      padding-top: 100px;
+      text-align: center;
+    }
+}

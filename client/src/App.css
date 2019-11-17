@@ -19,6 +19,10 @@ body {
   padding-top: 15px;
 }
 
+a {
+  color: #555;
+}
+
 .btn:focus {
   outline: 0 !important;
 }
@@ -43,6 +47,10 @@ body {
 
 .nav-tabs {
   border-bottom: 1px solid white;
+}
+
+.nav-tabs>li>a:focus {
+  outline: 0 !important
 }
 
 .page-header {

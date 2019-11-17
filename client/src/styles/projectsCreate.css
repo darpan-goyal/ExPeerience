@@ -1,5 +1,5 @@
 @media all and (min-width: 480px) {
-    .ProjectCreate .form-group {
-        max-width: 600px;
-    }
+  .ProjectCreate .form-group {
+      max-width: 600px;
+  }
 }

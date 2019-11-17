@@ -77,7 +77,7 @@ export default function ProfileEdit(props) {
     }
 
     axios.post('http://localhost:3000/user/update/' + props.userID, user)
-      .then(() => props.history.push("/profile"))
+      .then(() => props.history.push("/profile/" + props.userID))
       .catch(error => console.log(error));
   }
 

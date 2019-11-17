@@ -22,7 +22,7 @@
   
   .list-group {
     max-height: calc(100vh - 250px);
-    overflow-y: auto;
+    overflow-y: scroll;
   }
   
   .list-group-item {
@@ -41,5 +41,10 @@
     margin: 0 0;
     background-color: #f5f5f5;
     border: 1px solid #ccc;
+  }
+
+  .link-profile {
+    display: block;
+    color: black;
   }
 }

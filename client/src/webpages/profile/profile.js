@@ -13,10 +13,15 @@ export default function Profile(props) {
   const [picture, setPicture] = useState("/profile/profile.png");
   const [resume, setResume] = useState("/resume/resume.pdf");
 
+  const [currentUser, isCurrentUser] = useState(false);
+
   useEffect(() => {
-    axios.get('http://localhost:3000/user/' + props.userID)
+    if (props.match.params.userID === props.userID)
+      isCurrentUser(true);
+    
+    axios.get('http://localhost:3000/user/' + props.match.params.userID)
       .then(res => {
-        if (res.data.firstName)
+        if (res.data.firstName) 
           setFirstName(res.data.firstName);
         if (res.data.lastName)
           setLastName(res.data.lastName);
@@ -40,19 +45,21 @@ export default function Profile(props) {
           .catch(error => console.log(error));
       })
       .catch(error => console.log(error));
-  }, [props.userID]);
+  }, []);
 
   function editProfile() {
-    props.history.push("/profile/edit");
+    props.history.push("/profile/edit/" + props.userID);
   }
 
   return (
     <div className="Profile">
       <PageHeader>
         Profile
-        <Button className="pull-right" bsStyle="primary" type="submit" onClick={editProfile}>
-          Edit
-        </Button>
+        {currentUser && 
+          <Button className="pull-right" bsStyle="primary" type="submit" onClick={editProfile}>
+            Edit
+          </Button>
+        }
       </PageHeader>
       <Media>
         <Media.Left>

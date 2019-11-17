@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, ListGroupItem, PageHeader } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Button, ListGroupItem, NavItem, PageHeader } from "react-bootstrap";
 
 export default function ProjectItem(props) {
   function getCollegeName() {
@@ -8,23 +9,31 @@ export default function ProjectItem(props) {
   }
 
   function getMajorNames() {
-    const majorNames = props.majorList.filter(major => props.project.majors.includes(major._id));
-    return (majorNames.map(major => (<div>{major.name}</div>)));
+    const majors = props.majorList.filter(major => props.project.majors.includes(major._id));
+    return (majors.map(major => (<div>{major.name}</div>)));
   }
 
   function getSkillNames() {
-    const skillNames = props.skillList.filter(skill => props.project.skills.includes(skill._id));
-    return (skillNames.map(skill => (<div>{skill.name}</div>)));
+    const skills = props.skillList.filter(skill => props.project.skills.includes(skill._id));
+    return (skills.map(skill => (<div>{skill.name}</div>)));
   }
 
   function getCreatorName() {
     const creator = props.userList.find(user => user._id === props.project.creator);
-    return (<div>{creator.firstName + " " + creator.lastName}</div>);
+    return (
+      <Link className="link-profile" to={"/profile/" + creator._id} target="_blank">
+        <u>{creator.firstName + " " + creator.lastName}</u>
+      </Link>
+    );
   }
 
   function getPeerNames() {
-    const peerNames = props.userList.filter(user => props.project.peers.includes(user._id));
-    return (peerNames.map(peer =>(<div>{peer.firstName + " " + peer.lastName}</div>)));
+    const peers = props.userList.filter(user => props.project.peers.includes(user._id));
+    return (peers.map(peer =>
+      <Link className="link-profile" to={"/profile/" + peer._id} target="_blank">
+        <u>{peer.firstName + " " + peer.lastName}</u>
+      </Link>
+    ));
   }
 
   return (

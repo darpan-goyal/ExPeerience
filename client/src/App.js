@@ -50,7 +50,7 @@ function App(props) {
                   <LinkContainer to="/messages">
                     <NavItem>Messages</NavItem>
                   </LinkContainer>
-                  <LinkContainer to="/profile">
+                  <LinkContainer to={"/profile/" + userID}>
                     <NavItem>Profile</NavItem>
                   </LinkContainer>
                   <NavItem onClick={handleLogout}>Logout</NavItem>

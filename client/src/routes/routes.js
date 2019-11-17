@@ -21,8 +21,8 @@ export default function Routes({ appProps }) {
       <AppliedRoute path="/" exact component={Home} appProps={appProps} />
       <AppliedRoute path="/login" exact component={Login} appProps={appProps} />
       <AppliedRoute path="/signup" exact component={SignUp} appProps={appProps} />
-      <AppliedRoute path="/profile" exact component={Profile} appProps={appProps} />
-      <AppliedRoute path="/profile/edit" exact component={ProfileEdit} appProps={appProps} />
+      <AppliedRoute path="/profile/:userID" exact component={Profile} appProps={appProps} />
+      <AppliedRoute path="/profile/edit/:userID" exact component={ProfileEdit} appProps={appProps} />
       <AppliedRoute path="/projects" exact component={Projects} appProps={appProps} />
       <AppliedRoute path="/projects/edit" exact component = {ProjectsEdit} appProps={appProps} />
       <AppliedRoute path="/projects/create" exact component = {ProjectsCreate} appProps={appProps} />

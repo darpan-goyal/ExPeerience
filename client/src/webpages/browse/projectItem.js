@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { Button, ListGroupItem, PageHeader } from "react-bootstrap";
 
@@ -42,15 +41,20 @@ export default function ProjectItem(props) {
   }
 
   function validate() {
-    // const test = props.requestList.find(request => 
-    //   request.project === props.project._id &&
-    //   request.requester === props.userID
-    // );
+    if (props.currentUser === props.project.creator) {
+      return true;
+    }
 
-    // console.log(test);
-    
-    // if (test !== undefined) return false;
-    return true;
+    const test = props.requestList.find(request => 
+      request.project === props.project._id &&
+      request.requester === props.currentUser
+    );
+
+    if (test) {
+      return true;
+    }
+
+    return false;
   }
 
   return (
@@ -61,7 +65,7 @@ export default function ProjectItem(props) {
           className="pull-right" 
           bsStyle="warning" 
           onClick={props.handleApply.bind(this)}
-          disabled={!validate()}
+          disabled={validate()}
         >
           Apply
         </Button>

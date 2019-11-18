@@ -25,7 +25,7 @@ export default function Requests(props) {
       setLoading(false);
     })
     .catch(error => console.log(error));
-  }, []);
+  }, [props.userID]);
 
   function handleAccept(request) {
     const newPeer = { $addToSet: { peers: request.requester } };

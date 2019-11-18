@@ -25,7 +25,7 @@ export default function Projects(props) {
         setProjectList(filteredProjects);
       })
       .catch(error => console.log(error));
-  }, [projectList, props.userID]);
+  }, projectList);
 
   function handleDelete(pid) {
     axios.delete('http://localhost:3000/project/' + pid)

@@ -21,22 +21,23 @@ export default function Browse(props) {
 
   const [toggle, setToggle] = useState(true);
 
-  useEffect(() => {
-    axios.get('http://localhost:3000/college')
-      .then(res => setCollegeList(res.data))
-      .catch(error => console.log(error));
-      
-    axios.get('http://localhost:3000/major')
-      .then(res => setMajorList(res.data))
-      .catch(error => console.log(error));
-      
-    axios.get('http://localhost:3000/skill')
-      .then(res => setSkillList(res.data))
-      .catch(error => console.log(error));
+  const [loading, setLoading] = useState(true);
 
-    axios.get('http://localhost:3000/user')
-      .then(res => setUserList(res.data))
-      .catch(error => console.log(error));
+  useEffect(() => {
+    axios.all([
+      axios.get('http://localhost:3000/college'),
+      axios.get('http://localhost:3000/major'),
+      axios.get('http://localhost:3000/skill'),
+      axios.get('http://localhost:3000/user')
+    ])
+    .then(res => {
+      setCollegeList(res[0].data);
+      setMajorList(res[1].data);
+      setSkillList(res[2].data);
+      setUserList(res[3].data);
+      setLoading(false);
+    })
+    .catch(error => console.log(error));
   }, []);
 
   function search(event) {
@@ -76,6 +77,10 @@ export default function Browse(props) {
         userList={userList}
       />
     )
+  }
+
+  if (loading) {
+    return null;
   }
 
   return (

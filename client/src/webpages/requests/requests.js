@@ -1,42 +1,49 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Button, Col, Grid, ListGroup, PageHeader, Panel, Row } from "react-bootstrap";
+import { Col, Grid, ListGroup, PageHeader, Panel, Row } from "react-bootstrap";
 import RequestItem from "./requestItem";
-//import ProjectItem from "../browse/projectItem";
 import "../../styles/browse.css";
+import "../../styles/requests.css";
 
 export default function Requests(props) {
-  const [collegeList, setCollegeList] = useState([]);
-  const [majorList, setMajorList] = useState([]);
-  const [skillList, setSkillList] = useState([]);
   const [userList, setUserList] = useState([]);
   const [projectList, setProjectList] = useState([]);
   const [requestList, setRequestList] = useState([]);
-
-  const [project, setProject] = useState(null);
 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios.all([
-      axios.get('http://localhost:3000/college'),
-      axios.get('http://localhost:3000/major'),
-      axios.get('http://localhost:3000/skill'),
       axios.get('http://localhost:3000/user'),
       axios.get('http://localhost:3000/project'),
-      axios.get('http://localhost:3000/request')
+      axios.post('http://localhost:3000/request/search', { creator: props.userID })
     ])
     .then(res => {
-      setCollegeList(res[0].data);
-      setMajorList(res[1].data);
-      setSkillList(res[2].data);
-      setUserList(res[3].data);
-      setProjectList(res[4].data);
-      setRequestList(res[5].data);
+      setUserList(res[0].data);
+      setProjectList(res[1].data);
+      setRequestList(res[2].data);
       setLoading(false);
     })
     .catch(error => console.log(error));
   }, []);
+
+  function handleAccept(request) {
+    const newPeer = { $addToSet: { peers: request.requester } };
+
+    axios.post('http://localhost:3000/project/update/' + request.project, newPeer)
+      .then(() => handleReject(request))
+      .catch(error => console.log(error));
+  }
+
+  function handleReject(request) {
+    axios.delete('http://localhost:3000/request/' + request._id)
+      .then(() => {
+        axios.get('http://localhost:3000/request')
+          .then(res => setRequestList(res.data))
+          .catch(error => console.log(error));
+      })
+      .catch(error => console.log(error));
+  }
 
   function displayRequests() {
     return (requestList.map(request => 
@@ -44,22 +51,11 @@ export default function Requests(props) {
         request={request}
         userList={userList}
         projectList={projectList}
-        onClick={setProject.bind(this)}
+        handleAccept={handleAccept.bind(this)}
+        handleReject={handleReject.bind(this)}
       />
     ))
   }
-
-  // function viewProject() {
-  //   return (
-  //     <ProjectItem
-  //       project={project}
-  //       collegeList={collegeList}
-  //       majorList={majorList}
-  //       skillList={skillList}
-  //       userList={userList}
-  //     />
-  //   )
-  // }
 
   if (loading) {
     return null;
@@ -76,10 +72,6 @@ export default function Requests(props) {
               <Col xs={6}>
                 <ListGroup>
                   {displayRequests()}
-                </ListGroup>
-              </Col>
-              <Col xs={6}>
-                <ListGroup>
                 </ListGroup>
               </Col>
             </Row>

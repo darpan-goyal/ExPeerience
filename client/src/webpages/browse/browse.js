@@ -15,6 +15,7 @@ export default function Browse(props) {
   const [majorList, setMajorList] = useState([]);
   const [skillList, setSkillList] = useState([]);
   const [userList, setUserList] = useState([]);
+  const [requestList, setRequestList] = useState([]);
 
   const [projectList, setProjectList] = useState([]);
   const [project, setProject] = useState(null);
@@ -28,13 +29,15 @@ export default function Browse(props) {
       axios.get('http://localhost:3000/college'),
       axios.get('http://localhost:3000/major'),
       axios.get('http://localhost:3000/skill'),
-      axios.get('http://localhost:3000/user')
+      axios.get('http://localhost:3000/user'),
+      axios.get('http://localhost:3000/request')
     ])
     .then(res => {
       setCollegeList(res[0].data);
       setMajorList(res[1].data);
       setSkillList(res[2].data);
       setUserList(res[3].data);
+      setRequestList(res[4].data);
       setLoading(false);
     })
     .catch(error => console.log(error));
@@ -57,6 +60,22 @@ export default function Browse(props) {
       .catch(error => console.log(error));
   }
 
+  function handleApply() {
+    const request = {
+      requester: props.userID,
+      creator: project.creator,
+      project: project._id
+    }
+
+    axios.post('http://localhost:3000/request/add', request)
+      .then(() => {
+        axios.get('http://localhost:3000/request')
+          .then(res => setRequestList(res.data))
+          .catch(error => console.log(error));
+      })
+      .catch(error => console.log(error));
+  }
+
   function displayProjects() {
     return (projectList.map(project => 
       <BrowseItem 
@@ -75,6 +94,8 @@ export default function Browse(props) {
         majorList={majorList}
         skillList={skillList}
         userList={userList}
+        requestList={requestList}
+        handleApply={handleApply.bind(this)}
       />
     )
   }

@@ -1,0 +1,5 @@
+@media all and (min-width: 480px) {
+  .btn-accept, .btn-reject {
+    margin: 6px 0px 0px 10px;
+  }
+}

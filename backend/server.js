@@ -12,7 +12,7 @@ const uri = "mongodb+srv://Team:Teamwork@expeerience-8vflz.mongodb.net/expeerien
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 mongoose.set('useCreateIndex', true);
-mongoose.set('useFindAndModify', true);
+mongoose.set('useFindAndModify', false);
 mongoose.connect(uri);
 
 const connection = mongoose.connection;

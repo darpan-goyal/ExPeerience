@@ -46,4 +46,16 @@ router.route('/:id').delete((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+//searches for all requests that have the given creator id
+router.route('/search').post((req, res) => {
+  var filter = {};
+
+  if (req.body.creator)
+    filter.creator = req.body.creator;
+
+  Request.find(filter)
+    .then(request => res.json(request))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 module.exports = router;

@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import { Button, ListGroupItem, PageHeader } from "react-bootstrap";
 
@@ -20,13 +21,13 @@ export default function ProjectItem(props) {
 
   function getCreatorName() {
     const creator = props.userList.find(user => user._id === props.project.creator);
-    return ((
+    return (
       <div>
         <Link className="link-profile" to={"/profile/" + creator._id} target="_blank">
           <u>{creator.firstName + " " + creator.lastName}</u>
         </Link>
       </div>
-    ));
+    );
   }
 
   function getPeerNames() {
@@ -40,11 +41,28 @@ export default function ProjectItem(props) {
     )));
   }
 
+  function validate() {
+    // const test = props.requestList.find(request => 
+    //   request.project === props.project._id &&
+    //   request.requester === props.userID
+    // );
+
+    // console.log(test);
+    
+    // if (test !== undefined) return false;
+    return true;
+  }
+
   return (
     <>
       <PageHeader className="page-header-project">
         {props.project.name}
-        <Button className="pull-right" bsStyle="warning" type="submit">
+        <Button 
+          className="pull-right" 
+          bsStyle="warning" 
+          onClick={props.handleApply.bind(this)}
+          disabled={!validate()}
+        >
           Apply
         </Button>
       </PageHeader>

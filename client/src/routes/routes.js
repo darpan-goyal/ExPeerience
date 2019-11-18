@@ -13,6 +13,7 @@ import ProfileEdit from "../webpages/profile/profileEdit";
 import Projects from "../webpages/projects/projects";
 import ProjectsEdit from "../webpages/projects/projectsEdit";
 import ProjectsCreate from "../webpages/projects/projectsCreate";
+import Requests from "../webpages/requests/requests";
 import Browse from "../webpages/browse/browse";
 
 export default function Routes({ appProps }) {
@@ -26,6 +27,7 @@ export default function Routes({ appProps }) {
       <AppliedRoute path="/projects" exact component={Projects} appProps={appProps} />
       <AppliedRoute path="/projects/edit" exact component = {ProjectsEdit} appProps={appProps} />
       <AppliedRoute path="/projects/create" exact component = {ProjectsCreate} appProps={appProps} />
+      <AppliedRoute path="/requests" exact component = {Requests} appProps={appProps} />
       <AppliedRoute path="/browse" exact component = {Browse} appProps={appProps} />
       <Route component={NotFound} />
     </Switch>

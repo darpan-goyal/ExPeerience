@@ -47,6 +47,9 @@ function App(props) {
                   <LinkContainer to="/projects">
                     <NavItem>Projects</NavItem>
                   </LinkContainer>
+                  <LinkContainer to="/requests">
+                    <NavItem>Requests</NavItem>
+                  </LinkContainer>
                   <LinkContainer to="/messages">
                     <NavItem>Messages</NavItem>
                   </LinkContainer>

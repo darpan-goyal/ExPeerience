@@ -25,13 +25,15 @@ const majorRouter = require('./routes/major.route');
 const skillRouter = require('./routes/skill.route');
 const userRouter = require('./routes/user.route');
 const projectRouter = require('./routes/project.route');
-const messageRouter = require('./routes/message.route')
+const requestRouter = require('./routes/request.route');
+const messageRouter = require('./routes/message.route');
 
 app.use('/college', collegeRouter);
 app.use('/major', majorRouter);
 app.use('/skill', skillRouter);
 app.use('/user', userRouter);
 app.use('/project', projectRouter);
+app.use('/request', requestRouter);
 app.use('/message', messageRouter);
 
 app.listen(port, () => {

@@ -17,6 +17,8 @@ export default function ProfileEdit(props) {
   const [collegeList, setCollegeList] = useState([]);
   const [majorList, setMajorList] = useState([]);
   const [skillList, setSkillList] = useState([]);
+
+  const [loading, setLoading] = useState(true);
   
   function validateForm() {
     return (
@@ -34,40 +36,38 @@ export default function ProfileEdit(props) {
   }
 
   useEffect(() => {
-    axios.get('http://localhost:3000/user/' + props.userID)
+    axios.all([
+      axios.get('http://localhost:3000/college'),
+      axios.get('http://localhost:3000/major'),
+      axios.get('http://localhost:3000/skill'),
+      axios.get('http://localhost:3000/user/' + props.userID),
+    ])
+    .then(res => {
+      setCollegeList(res[0].data);
+      setMajorList(res[1].data);
+      setSkillList(res[2].data);
+
+      if (res[3].data.firstName)
+        setFirstName(res[3].data.firstName);
+      if (res[3].data.lastName)
+        setLastName(res[3].data.lastName);
+      if (res[3].data.biography)
+        setBiography(res[3].data.biography);
+
+      axios.all([
+        axios.get('http://localhost:3000/college/' + res[3].data.college),
+        axios.get('http://localhost:3000/major/' + res[3].data.major),
+        axios.post('http://localhost:3000/skill/', res[3].data.skills)
+      ])
       .then(res => {
-        if (res.data.firstName)
-          setFirstName(res.data.firstName);
-        if (res.data.lastName)
-          setLastName(res.data.lastName);
-        if (res.data.biography)
-          setBiography(res.data.biography);
-
-        axios.get('http://localhost:3000/college/' + res.data.college)
-          .then(res => { setCollege(res.data) })
-          .catch(error => console.log(error));
-
-        axios.get('http://localhost:3000/major/' + res.data.major)
-          .then(res => { setMajor(res.data) })
-          .catch(error => console.log(error));
-
-        axios.post('http://localhost:3000/skill/', res.data.skills)
-          .then(res => { setSkills(res.data) })
-          .catch(error => console.log(error));
+        setCollege(res[0].data);
+        setMajor(res[1].data);
+        setSkills(res[2].data);
+        setLoading(false);
       })
       .catch(error => console.log(error));
-
-    axios.get('http://localhost:3000/college')
-      .then(res => { setCollegeList(res.data) })
-      .catch(error => console.log(error));
-
-    axios.get('http://localhost:3000/major')
-      .then(res => { setMajorList(res.data) })
-      .catch(error => console.log(error));
-
-    axios.get('http://localhost:3000/skill')
-      .then(res => { setSkillList(res.data) })
-      .catch(error => console.log(error));
+    })
+    .catch(error => console.log(error));
   }, [props.userID]);
 
   function handleSubmit(event) {
@@ -85,6 +85,10 @@ export default function ProfileEdit(props) {
     axios.post('http://localhost:3000/user/update/' + props.userID, user)
       .then(() => props.history.push("/profile/" + props.userID))
       .catch(error => console.log(error));
+  }
+
+  if (loading) {
+    return null;
   }
 
   return (

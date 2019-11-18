@@ -15,10 +15,13 @@ export default function Profile(props) {
 
   const [currentUser, isCurrentUser] = useState(false);
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    if (props.match.params.userID === props.userID)
+    if (props.match.params.userID === props.userID) {
       isCurrentUser(true);
-    
+    }
+      
     axios.get('http://localhost:3000/user/' + props.match.params.userID)
       .then(res => {
         if (res.data.firstName) 
@@ -32,23 +35,28 @@ export default function Profile(props) {
         if (res.data.resume)
           setResume(res.data.resume);
 
-        axios.get('http://localhost:3000/college/' + res.data.college)
-          .then(res => { setCollege(res.data.name) })
-          .catch(error => console.log(error));
-
-        axios.get('http://localhost:3000/major/' + res.data.major)
-          .then(res => { setMajor(res.data.name) })
-          .catch(error => console.log(error));
-
-        axios.post('http://localhost:3000/skill/', res.data.skills)
-          .then(res => { setSkills(res.data) })
-          .catch(error => console.log(error));
+        axios.all([
+          axios.get('http://localhost:3000/college/' + res.data.college),
+          axios.get('http://localhost:3000/major/' + res.data.major),
+          axios.post('http://localhost:3000/skill/', res.data.skills)
+        ])
+        .then(res => {
+          setCollege(res[0].data.name);
+          setMajor(res[1].data.name);
+          setSkills(res[2].data);
+          setLoading(false);
+        })
+        .catch(error => console.log(error));
       })
       .catch(error => console.log(error));
   }, [props.userID, props.match.params.userID]);
 
   function editProfile() {
     props.history.push("/profile/edit/" + props.userID);
+  }
+
+  if (loading) {
+    return null;
   }
 
   return (

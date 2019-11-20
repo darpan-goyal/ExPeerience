@@ -9,6 +9,7 @@ import Home from "../webpages/home";
 import Login from "../webpages/login";
 import SignUp from "../webpages/signUp";
 import Profile from "../webpages/profile/profile";
+import Messages from "../webpages/messages/messages";
 import ProfileEdit from "../webpages/profile/profileEdit";
 import Projects from "../webpages/projects/projects";
 import ProjectsEdit from "../webpages/projects/projectsEdit";
@@ -25,6 +26,7 @@ export default function Routes({ appProps }) {
       <AppliedRoute path="/profile/:userID" exact component={Profile} appProps={appProps} />
       <AppliedRoute path="/profile/edit/:userID" exact component={ProfileEdit} appProps={appProps} />
       <AppliedRoute path="/projects" exact component={Projects} appProps={appProps} />
+      <AppliedRoute path="/messages" exact component={Messages} appProps={appProps} />
       <AppliedRoute path="/projects/edit" exact component = {ProjectsEdit} appProps={appProps} />
       <AppliedRoute path="/projects/create" exact component = {ProjectsCreate} appProps={appProps} />
       <AppliedRoute path="/requests" exact component = {Requests} appProps={appProps} />

@@ -26,7 +26,8 @@ export default function ProjectsCreate(props) {
   function validateForm() {
     return (
       name.length > 3 &&
-      name.length <= 32
+      name.length <= 32 &&
+      college.value != undefined
     );
   }
 

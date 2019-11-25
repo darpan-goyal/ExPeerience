@@ -89,6 +89,7 @@ export default function Browse(props) {
   function viewProject() {
     return (
       <ProjectItem
+        loggedIn={props.isAuthenticated}
         currentUser={props.userID}
         project={project}
         collegeList={collegeList}

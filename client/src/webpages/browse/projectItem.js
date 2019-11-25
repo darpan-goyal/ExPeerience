@@ -41,16 +41,20 @@ export default function ProjectItem(props) {
   }
 
   function validate() {
+    if (!props.loggedIn) {
+      return true;
+    }
+
     if (props.currentUser === props.project.creator) {
       return true;
     }
 
-    const test = props.requestList.find(request => 
+    const ownsProject = props.requestList.find(request => 
       request.project === props.project._id &&
       request.requester === props.currentUser
     );
 
-    if (test) {
+    if (ownsProject) {
       return true;
     }
 

@@ -53,7 +53,7 @@
 
   .badge:hover {
     background-color: #eee;
-    color: gray;
+    color: black;
   }
 
   .badge:hover:after {

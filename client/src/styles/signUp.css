@@ -26,6 +26,14 @@
     color: gray;
   }
 
+  .help-block {
+    color: #524948 !important;
+  }
+
+  .control-label {
+    color: black !important;
+  }
+
   .help-block-username {
     display: block !important;
     text-align: center;

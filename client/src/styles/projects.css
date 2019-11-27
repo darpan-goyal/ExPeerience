@@ -36,6 +36,10 @@
       text-size-adjust: 10px;
 
   }
+  .btn {
+      color: white;
+      border-radius: 15%;
+  }
   .button-box {
       display: flex;
       width: fit-content;

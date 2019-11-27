@@ -59,7 +59,7 @@ export default function Projects(props) {
     <div className="Projects">
       <PageHeader>
         Projects
-        <Button className="pull-right" type="submit" onClick={createProject} >
+        <Button className="pull-right" bsStyle="primary" type="submit" onClick={createProject} >
           New
         </Button>
       </PageHeader>

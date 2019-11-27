@@ -2,7 +2,7 @@
 
 :root {
   --text-color: black;
-  --background-color: peachpuff;
+  --background-color:#52ad90;;
 }
 
 body {
@@ -25,6 +25,10 @@ a {
 
 .btn:focus {
   outline: 0 !important;
+}
+
+.btn {
+  background-color: #E56399;
 }
 
 .btn-primary:focus-within {

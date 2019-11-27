@@ -1,6 +1,9 @@
 @media all and (min-width: 480px) {
   .Login {
-    padding: 20px 0;
+    background: url("login.svg") no-repeat;
+    background-size: 40%;
+    padding: 5%;
+    background-position-y: center;
   }
 
   .Login .page-header {
@@ -9,7 +12,9 @@
 
   .Login form {
     margin: 0 auto;
-    max-width: 320px;
+    max-width: 100%;
+    padding-left: 60%;
+    padding-right: 10%;
   }
 
   .help-block-credentials {

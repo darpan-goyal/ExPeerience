@@ -1,6 +1,8 @@
 @media all and (min-width: 480px) {
   .SignUp {
-    padding: 20px 0;
+    background: url("login.svg") no-repeat;
+    background-size: 50%;
+    background-position-y: center;
   }
 
   .SignUp .page-header {
@@ -9,7 +11,10 @@
 
   .SignUp form {
     margin: 0 auto;
-    max-width: 320px;
+    max-width: 100%;
+    padding-left: 60%;
+    padding-right: 10%;
+    padding-bottom: 10%;
   }
 
   .SignUp .form-group {

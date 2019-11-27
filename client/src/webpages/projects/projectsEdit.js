@@ -95,7 +95,7 @@ export default function ProjectsEdit(props) {
       <form onSubmit={handleSubmit}>
         <PageHeader>
           Edit Project
-          <Button className="pull-right" bsSize="medium" disabled={!validateForm()} type="submit">
+          <Button className="pull-right" bsStyle="primary" bsSize="medium" disabled={!validateForm()} type="submit">
             Save
           </Button>
         </PageHeader>

@@ -80,7 +80,7 @@ export default function ProjectsCreate(props) {
       <form onSubmit={handleSubmit}>
         <PageHeader>
           Create Project
-          <Button className="pull-right" bsSize="medium" disabled={!validateForm()} type="submit">
+          <Button className="pull-right" bsStyle="primary" disabled={!validateForm()} type="submit">
             Create
           </Button>
         </PageHeader>

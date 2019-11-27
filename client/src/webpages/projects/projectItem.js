@@ -69,8 +69,8 @@ export default class projectItem extends React.Component {
         <div className="button-box">
           {(this.props.userID === this.props.creator) ? (
               <div className="button-box">
-                  <Button onClick={this.props._handleEdit.bind(this, this.props.id)}>Edit</Button>
-                  <Button onClick={this.props._handleDelete.bind(this, this.props.id)}>Delete</Button>
+                  <Button bsStyle="warning" onClick={this.props._handleEdit.bind(this, this.props.id)}>Edit</Button>
+                  <Button bsStyle="danger" onClick={this.props._handleDelete.bind(this, this.props.id)}>Delete</Button>
               </div>
           ) : (
               <div className="button-box">

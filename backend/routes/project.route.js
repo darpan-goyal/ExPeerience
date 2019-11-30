@@ -58,6 +58,8 @@ router.route('/:id').delete((req, res) => {
 router.route('/search').post((req, res) => {
   var filter = {};
 
+  if (req.body.creator)
+    filter.creator = req.body.creator;
   if (req.body.college)
     filter.college = req.body.college;
   if (req.body.major)

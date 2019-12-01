@@ -54,8 +54,16 @@ export default function ProjectItem(props) {
       request.requester === props.currentUser
     );
 
-    if (ownsProject) {
+    const alreadyJoined = props.project.peers.find(peer => 
+      peer === props.currentUser
+    );
+
+    if (ownsProject !== undefined) {
       return true;
+    }
+
+    if (alreadyJoined !== undefined) {
+      return true
     }
 
     return false;

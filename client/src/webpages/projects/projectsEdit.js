@@ -58,7 +58,7 @@ export default function ProjectsEdit(props) {
 
     axios.get('http://localhost:3000/user')
       .then(res => {
-        res.data.forEach(u => peerOptions.push({label: u.username, value: u._id}))
+        res.data.forEach(u => peerOptions.push({label: (u.firstName + " " + u.lastName), value: u._id}))
         var result = [];
         for(var i = 0; i < props.location.data[0].peers.length; i++) {
           result = result.concat(peerOptions.filter(

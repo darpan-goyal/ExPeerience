@@ -39,7 +39,7 @@ export default class projectItem extends React.Component {
       axios.get('http://localhost:3000/user/' + peer)
         .then(res => {
           let temp = this.state.peerNames;
-          temp.push(res.data.username);
+          temp.push(res.data.firstName + " " + res.data.lastName);
           this.setState({peerNames: temp});
       })
     )

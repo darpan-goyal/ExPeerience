@@ -101,7 +101,7 @@ describe('Requests - reject', function() {
   var requestee = 'Test User2'
   var project = /^Test Project$/
 
-  it('login user', function() {
+  it('login', function() {
     cy.contains('Login').click()
     cy.get('input').eq(0).type(username)
     cy.get('input').eq(1).type(password)
@@ -124,9 +124,107 @@ describe('Requests - reject', function() {
     cy.contains('Projects').click()
     cy.contains(project).parent().parent('.project-item').within(() => {
       cy.contains('Peers').parent('.other-box').within(()=> {
-        cy.wait(1000)
+        cy.wait(1500)
         cy.contains(requestee).should('not.exist')
       })
     })
+  })
+
+  it('logout', function() {
+    cy.contains('Logout').click()
+  })
+
+  it('logged out', function() {
+    cy.contains('Login').should('be.visible')
+  })
+})
+
+describe('Requests - apply again', function() {
+  var username = 'TestUser2'
+  var password = 'password'
+  var project = /^Test Project$/
+
+  it('login user', function() {
+    cy.contains('Login').click()
+    cy.get('input').eq(0).type(username)
+    cy.get('input').eq(1).type(password)
+    cy.get('button').eq(1).click()
+    cy.wait(500)
+  })
+
+  it('logged in', function() {
+    cy.contains('Logout').should('be.visible')
+  })
+
+  it('able to apply again after being rejected', function() {
+    cy.contains('Browse').click()
+    cy.contains('Filter').click()
+    cy.get('b.list-group-item-heading').contains(project).click()
+    cy.get('.btn-warning').should('be.enabled')
+    cy.get('.btn-warning').click()
+  })
+
+  it('unable to apply after having applied', function() {
+    cy.get('.btn-warning').should('be.disabled')
+  })
+
+  it('logout user', function() {
+    cy.contains('Logout').click()
+  })
+
+  it('logged out', function() {
+    cy.contains('Login').should('be.visible')
+  })
+})
+
+describe('Requests - accept', function() {
+  var username = 'TestUser1'
+  var password = 'password'
+  var requestee = 'Test User2'
+  var project = /^Test Project$/
+
+  it('login', function() {
+    cy.contains('Login').click()
+    cy.get('input').eq(0).type(username)
+    cy.get('input').eq(1).type(password)
+    cy.get('button').eq(1).click()
+    cy.wait(500)
+  })
+
+  it('logged in', function() {
+    cy.contains('Logout').should('be.visible')
+  })
+
+  it('accept request', function() {
+    cy.contains('Requests').click()
+    cy.contains(requestee).parent().parent('.list-group-item').within(() => {
+      cy.get('.btn-accept').click()
+    })
+  })
+
+  it('validate that user was added to project', function() {
+    cy.contains('Projects').click()
+    cy.contains(project).parent().parent('.project-item').within(() => {
+      cy.contains('Peers').parent('.other-box').within(()=> {
+        cy.wait(1500)
+        cy.contains(requestee).should('exist')
+      })
+    })
+  })
+
+  it('remove user from project', function() {
+    cy.contains(project).parent().parent('.project-item').within(() => {
+      cy.get('.btn-warning').click()
+    })
+    cy.get('.css-1hwfws3').eq(3).click().type('{backspace}')
+    cy.get('.btn-primary').contains('Save').click()
+  })
+
+  it('logout', function() {
+    cy.contains('Logout').click()
+  })
+
+  it('logged out', function() {
+    cy.contains('Login').should('be.visible')
   })
 })

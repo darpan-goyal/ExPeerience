@@ -135,7 +135,11 @@ describe('Browse - general', function() {
 
 describe('Browse - not logged in', function() {
   it('not logged in', function() {
-    cy.contains('Login').should('be.visible')
+    cy.contains('Login').should('be.visible').click()
+  })
+
+  it('able to visit browse', function() {
+    cy.contains('Browse').click()
   })
 
   it('unable to apply to any projects', function() {
@@ -164,8 +168,11 @@ describe('Browse - logged in', function() {
     cy.contains('Logout').should('be.visible')
   })
 
-  it('unable to apply to own projects', function() {
+  it('able to visit browse', function() {
     cy.contains('Browse').click()
+  })
+
+  it('unable to apply to own projects', function() {
     cy.contains('Filter').click()
     cy.request('POST', '/user/authenticate', { username: username, password: password })
       .then(res => cy.request('POST', '/project/search', { creator: res.body._id }))

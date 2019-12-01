@@ -71,7 +71,7 @@ export default function Requests(props) {
             <Row>
               <Col xs={6}>
                 <ListGroup>
-                  {displayRequests()}
+                  {props.isAuthenticated && displayRequests()}
                 </ListGroup>
               </Col>
             </Row>

@@ -72,7 +72,7 @@ describe('Browse - general', function() {
     }))
   })
 
-  it('able to filter projects by skill(s)', function() {
+  it('able to filter projects by skills', function() {
     cy.reload()
     cy.request('GET', '/skill')
       .then(res => res.body.forEach(skill => {

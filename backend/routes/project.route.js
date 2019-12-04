@@ -10,7 +10,7 @@ router.route('/:id').get((req, res) => {
 
 //gets all projects
 router.route('/').get((req, res) => {
-  Project.find()
+  Project.find().sort({ name: 1 })
     .then(project => res.json(project))
     .catch(err => res.status(400).json('Error: ' + err));
 });
@@ -68,7 +68,7 @@ router.route('/search').post((req, res) => {
     if (req.body.skills.length > 0)
       filter.skills = { $in: req.body.skills };
 
-  Project.find(filter)
+  Project.find(filter).sort({ name: 1 })
     .then(project => res.json(project))
     .catch(err => res.status(400).json('Error: ' + err));
 });

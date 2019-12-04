@@ -76,11 +76,16 @@ export default function ProfileEdit(props) {
     const user = {
       firstName: firstName,
       lastName: lastName,
-      biography: biography,
-      college: college,
-      major: major,
-      skills: skills
     }
+
+    if (biography)
+      user.biography = biography;
+    if (college)
+      user.college = college;
+    if (major)
+      user.major = major;
+    if (skills)
+      user.skills = skills;
 
     axios.post('http://localhost:3000/user/update/' + props.userID, user)
       .then(() => props.history.push("/profile/" + props.userID))

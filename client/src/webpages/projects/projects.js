@@ -33,6 +33,9 @@ export default function Projects(props) {
         setProjectList(projectList.filter(p => p._id !== pid))
       })
       .catch(error => console.log(error));
+
+    axios.delete('http://localhost:3000/request/project/' + pid)
+      .catch(error => console.log(error));
   }
 
   function handleLeave(pid, uID, peers) {

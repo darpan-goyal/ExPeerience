@@ -46,6 +46,13 @@ router.route('/:id').delete((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+//deletes requests given a project id
+router.route('/project/:id').delete((req, res) => {
+  Request.deleteMany({ project: req.params.id })
+    .then(() => res.json('Requests deleted.'))
+    .catch(err => res.status(400).json('Error: ' + err));
+})
+
 //searches for all requests that have the given creator id
 router.route('/search').post((req, res) => {
   var filter = {};

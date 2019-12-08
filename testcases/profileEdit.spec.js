@@ -7,10 +7,10 @@ describe('Login to account', function() {
         cy.contains('Login').click()
     })
     it('enter username', function() {
-        cy.get('input').eq(0).type('pass')
+        cy.get('input').eq(0).type('TestUser4')
     })
     it('enter password', function() {
-        cy.get('input').eq(1).type('pass')
+        cy.get('input').eq(1).type('password')
     })
     it('post using login', function() {
         cy.get('Button').eq(1).click()

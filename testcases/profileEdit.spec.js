@@ -8,7 +8,7 @@ describe('Login to account', function() {
     })
     it('enter username', function() {
         cy.get('input').eq(0).type('TestUser1')
-    })
+})
     it('enter password', function() {
         cy.get('input').eq(1).type('password')
     })

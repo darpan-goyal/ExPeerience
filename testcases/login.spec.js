@@ -1,6 +1,5 @@
 describe('Login test', function() {
    
-    
     it('visit splash', function() {
         cy.visit('localhost:3000')
     })
@@ -8,11 +7,6 @@ describe('Login test', function() {
     it('visit login', function() {
         cy.contains('Login').click()
     })
-    
-    //beforeEach( function() {
-    //    cy.get(':nth-child(2) > .form-control').clear()
-    //    cy.get(':nth-child(3) > .form-control').clear()
-    //})
 
     it('login in with wrong username', function() {
         cy.get(':nth-child(2) > .form-control').type('wordd')
@@ -92,7 +86,7 @@ describe('Login test', function() {
     })
 
     it('login with valid account', function() {
-        cy.get(':nth-child(2) > .form-control').type('word')
+        cy.get(':nth-child(2) > .form-control').type('TestUser1')
         cy.get(':nth-child(3) > .form-control').type('password')
         cy.get('[type="submit"]').click()
         cy.contains('Browse')

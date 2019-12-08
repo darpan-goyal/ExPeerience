@@ -7,10 +7,10 @@ describe('Login to account', function() {
         cy.contains('Login').click()
     })
     it('enter username', function() {
-        cy.get('input').eq(0).type('pass')
+        cy.get('input').eq(0).type('TestUser5')
     })
     it('enter password', function() {
-        cy.get('input').eq(1).type('pass')
+        cy.get('input').eq(1).type('password')
     })
     it('post using login', function() {
         cy.get('Button').eq(1).click()
@@ -94,7 +94,7 @@ describe('Create Project', function() {
             for(var i in vskills) {
                 cy.get('.project-item').eq(projCt - 1).invoke('text').should('include', vskills[i])
             }
-            cy.get('.project-item').eq(projCt - 1).invoke('text').should('include', 'pass')
+            cy.get('.project-item').eq(projCt - 1).invoke('text').should('include', 'Test User5')
             cy.get('.project-item').eq(projCt - 1).invoke('text').should('include', vDescription)
             cy.get('.project-item').eq(projCt - 1).invoke('text').should('include', vProjectName)
             cy.get('.project-item').eq(projCt - 1).invoke('text').should('not.include', 'Computer Engineering')

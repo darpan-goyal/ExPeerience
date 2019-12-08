@@ -198,4 +198,12 @@ describe('Browse - logged in', function() {
         }
       }))
   })
+
+  it('logout', function() {
+    cy.contains('Logout').click()
+  })
+
+  it('logged out', function() {
+    cy.contains('Login').should('be.visible')
+  })
 })

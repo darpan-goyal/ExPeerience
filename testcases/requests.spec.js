@@ -61,7 +61,7 @@ describe('Requests - logged out', function() {
 describe('Requests - apply', function() {
   var username = 'TestUser2'
   var password = 'password'
-  var project = /^Test Project$/
+  var project = /^StudyU$/
 
   it('login user', function() {
     cy.contains('Login').click()
@@ -99,7 +99,7 @@ describe('Requests - reject', function() {
   var username = 'TestUser1'
   var password = 'password'
   var requestee = 'Test User2'
-  var project = /^Test Project$/
+  var project = /^StudyU$/
 
   it('login', function() {
     cy.contains('Login').click()
@@ -142,7 +142,7 @@ describe('Requests - reject', function() {
 describe('Requests - apply again', function() {
   var username = 'TestUser2'
   var password = 'password'
-  var project = /^Test Project$/
+  var project = /^StudyU$/
 
   it('login user', function() {
     cy.contains('Login').click()
@@ -181,7 +181,7 @@ describe('Requests - accept', function() {
   var username = 'TestUser1'
   var password = 'password'
   var requestee = 'Test User2'
-  var project = /^Test Project$/
+  var project = /^StudyU$/
 
   it('login', function() {
     cy.contains('Login').click()

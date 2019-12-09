@@ -81,9 +81,12 @@ export default function ProjectsEdit(props) {
       peers: [props.userID],
     }
 
-    majors.forEach(m => project.majors.push(m.value));
-    skills.forEach(s => project.skills.push(s.value));
-    peers.forEach(p => props.userID !== p.value ? project.peers.push(p.value) : {});
+    if (majors)
+      majors.forEach(m => project.majors.push(m.value));
+    if (skills)
+      skills.forEach(s => project.skills.push(s.value));
+    if (peers)
+      peers.forEach(p => props.userID !== p.value ? project.peers.push(p.value) : {});
 
     axios.post('http://localhost:3000/project/update/' + props.location.data[0]._id, project)
       .then(() => props.history.push("/projects"))
